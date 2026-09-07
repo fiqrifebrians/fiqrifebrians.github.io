@@ -154,7 +154,7 @@ nav {
 }
 
 .profile-image-container {
-    margin-top: 100px;
+    margin-top: 85px;
     margin-bottom: 25px;
 }
 
@@ -318,19 +318,19 @@ section {
     color: #64748b;
 }
 
-/* Gaya default tombol Contact (putih dengan garis tepi merah) */
 #contact .btn {
-    background: #ffffff;
-    color: #dc2626;
-    border: 2px solid #dc2626;
+    background: transparent;
+    color: #475569;
+    border: 2px solid transparent;
 }
 
-/* Gaya saat tombol Contact di-hover (merah penuh) */
 #contact .btn:hover {
     background: linear-gradient(90deg, #dc2626, #ef4444);
     color: #ffffff;
+    border-color: transparent;
     box-shadow: 0 10px 20px rgba(220, 38, 38, 0.2);
     transform: translateY(-2px);
+}
 }
 
 footer {
