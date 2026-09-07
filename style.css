@@ -8,8 +8,8 @@
 
 body {
     font-family: 'Plus Jakarta Sans', sans-serif;
-    background-color: #0b0f19; /* Deep dark background */
-    color: #e2e8f0;
+    background-color: #f8fafc; /* Latar belakang putih/abu-abu sangat terang */
+    color: #334155; /* Teks abu-abu gelap */
     line-height: 1.7;
     overflow-x: hidden;
     position: relative;
@@ -23,19 +23,19 @@ body {
     z-index: 10;
 }
 
-/* Background Glowing Shapes for Design-full look */
+/* Background Glowing Shapes (Nuansa Merah) */
 .bg-shape {
     position: absolute;
     border-radius: 50%;
     filter: blur(120px);
     z-index: 0;
-    opacity: 0.5;
+    opacity: 0.4;
 }
 
 .shape-1 {
     width: 500px;
     height: 500px;
-    background: #38bdf8;
+    background: #fecaca; /* Merah muda */
     top: -100px;
     left: -150px;
 }
@@ -43,35 +43,34 @@ body {
 .shape-2 {
     width: 600px;
     height: 600px;
-    background: #6366f1;
+    background: #fee2e2;
     bottom: 20%;
     right: -200px;
 }
 
-/* Glassmorphism Reusable Class */
-.glass-card {
-    background: rgba(30, 41, 59, 0.4);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border: 1px solid rgba(255, 255, 255, 0.08);
+/* Kartu / Cards Style (Clean White) */
+.card {
+    background: #ffffff;
+    border: 1px solid #f1f5f9;
     border-radius: 16px;
     padding: 40px;
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease, border-color 0.3s ease;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
 }
 
-.glass-card:hover {
-    border-color: rgba(56, 189, 248, 0.3);
+.card:hover {
+    border-color: #fca5a5;
+    box-shadow: 0 15px 35px rgba(220, 38, 38, 0.08);
 }
 
 /* Typography & Headings */
 h1, h2, h3, h4 {
-    color: #f8fafc;
+    color: #0f172a; /* Warna hitam pekat untuk judul */
     font-weight: 700;
 }
 
 .gradient-text {
-    background: linear-gradient(90deg, #38bdf8, #818cf8);
+    background: linear-gradient(90deg, #dc2626, #f87171); /* Gradasi merah */
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     display: inline-block;
@@ -90,7 +89,7 @@ h1, h2, h3, h4 {
 .section-header .line {
     height: 4px;
     width: 60px;
-    background: linear-gradient(90deg, #38bdf8, #818cf8);
+    background: linear-gradient(90deg, #dc2626, #f87171);
     margin: 0 auto;
     border-radius: 2px;
 }
@@ -100,10 +99,11 @@ header {
     position: fixed;
     width: 100%;
     top: 0;
-    background-color: rgba(11, 15, 25, 0.8);
+    background-color: rgba(255, 255, 255, 0.9);
     backdrop-filter: blur(15px);
     z-index: 1000;
-    border-bottom: 1px solid rgba(255,255,255,0.05);
+    border-bottom: 1px solid #f1f5f9;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
 }
 
 nav {
@@ -118,7 +118,7 @@ nav {
 .logo {
     font-size: 1.5rem;
     font-weight: 700;
-    color: #f8fafc;
+    color: #dc2626; /* Logo merah */
 }
 
 .nav-links {
@@ -129,7 +129,7 @@ nav {
 
 .nav-links a {
     text-decoration: none;
-    color: #94a3b8;
+    color: #475569;
     font-weight: 600;
     font-size: 0.9rem;
     text-transform: uppercase;
@@ -138,29 +138,48 @@ nav {
 }
 
 .nav-links a:hover {
-    color: #38bdf8;
+    color: #dc2626;
 }
 
-/* Hero Section */
+/* Hero Section & Profile Photo */
 #hero {
-    height: 100vh;
+    min-height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
     position: relative;
     z-index: 10;
+    padding-top: 80px;
+}
+
+.profile-image-container {
+    margin-bottom: 25px;
+}
+
+.profile-photo {
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid #ffffff;
+    box-shadow: 0 10px 25px rgba(220, 38, 38, 0.2);
+    transition: transform 0.3s ease;
+}
+
+.profile-photo:hover {
+    transform: scale(1.05);
 }
 
 .hero-content h1 {
-    font-size: 4rem;
+    font-size: 3.5rem;
     margin-bottom: 10px;
     letter-spacing: -1px;
 }
 
 .hero-content h2 {
-    font-size: 1.6rem;
-    color: #cbd5e1;
+    font-size: 1.5rem;
+    color: #64748b;
     margin-bottom: 25px;
     font-weight: 400;
 }
@@ -169,7 +188,7 @@ nav {
     max-width: 600px;
     margin: 0 auto 40px auto;
     font-size: 1.1rem;
-    color: #94a3b8;
+    color: #475569;
 }
 
 /* Buttons */
@@ -184,37 +203,38 @@ nav {
 }
 
 #hero .btn {
-    background: transparent;
-    color: #f8fafc;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    backdrop-filter: blur(5px);
+    background: #ffffff;
+    color: #dc2626;
+    border: 2px solid #dc2626;
 }
 
 #hero .btn:hover {
-    background: #f8fafc;
-    color: #0b0f19;
+    background: #dc2626;
+    color: #ffffff;
+    box-shadow: 0 10px 20px rgba(220, 38, 38, 0.2);
 }
 
 .btn-primary {
-    background: linear-gradient(90deg, #38bdf8, #6366f1);
+    background: linear-gradient(90deg, #dc2626, #ef4444);
     color: #fff;
     border: none;
 }
 
 .btn-primary:hover {
-    box-shadow: 0 10px 20px rgba(99, 102, 241, 0.4);
+    box-shadow: 0 10px 20px rgba(220, 38, 38, 0.3);
     transform: translateY(-2px);
 }
 
 /* Sections General */
 section {
-    padding: 120px 0;
+    padding: 100px 0;
 }
 
 /* About Section */
 .about-card p {
     font-size: 1.1rem;
     text-align: justify;
+    line-height: 1.8;
 }
 
 /* Career Journey Section */
@@ -240,7 +260,7 @@ section {
     height: 70px;
     border-radius: 12px;
     object-fit: cover;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
 }
 
 .career-details {
@@ -256,13 +276,14 @@ section {
 }
 
 .career-header h3 {
-    font-size: 1.4rem;
+    font-size: 1.3rem;
+    color: #0f172a;
 }
 
 .career-date {
     font-size: 0.85rem;
-    color: #38bdf8;
-    background: rgba(56, 189, 248, 0.1);
+    color: #dc2626;
+    background: #fef2f2;
     padding: 5px 12px;
     border-radius: 20px;
     font-weight: 600;
@@ -270,14 +291,15 @@ section {
 
 .company-name {
     font-size: 1.1rem;
-    color: #cbd5e1;
+    color: #475569;
     font-weight: 600;
-    margin-bottom: 15px;
+    margin-bottom: 12px;
 }
 
 .career-description {
     font-size: 0.95rem;
-    color: #94a3b8;
+    color: #64748b;
+    line-height: 1.6;
 }
 
 /* Contact & Footer */
@@ -291,14 +313,14 @@ section {
 
 .contact-card p {
     margin-bottom: 35px;
-    color: #94a3b8;
+    color: #64748b;
 }
 
 footer {
     text-align: center;
     padding: 30px;
-    border-top: 1px solid rgba(255,255,255,0.05);
-    color: #64748b;
+    border-top: 1px solid #e2e8f0;
+    color: #94a3b8;
     font-size: 0.9rem;
     position: relative;
     z-index: 10;
@@ -320,6 +342,6 @@ footer {
         gap: 15px;
     }
     .hero-content h1 {
-        font-size: 3rem;
+        font-size: 2.5rem;
     }
 }
