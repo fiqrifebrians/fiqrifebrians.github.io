@@ -20,6 +20,7 @@
             <ul class="nav-links">
                 <li><a href="#about">About</a></li>
                 <li><a href="#career">Career</a></li>
+                <li><a href="#education">Education</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
         </nav>
@@ -30,12 +31,12 @@
         <div class="hero-content">
             <!-- TEMPAT FOTO PROFIL -->
             <div class="profile-image-container">
-                <!-- Ganti 'foto-profil.jpg' dengan nama file foto Anda yang sudah di-upload ke GitHub -->
                 <img src="images/Fiqri.jpeg" alt="Muhammad Fiqri Febriansyah" class="profile-photo">
             </div>
             
             <h1 class="gradient-text">Muhammad Fiqri Febriansyah</h1>
-            <h2>IT Specialist & Software Developer</h2>
+            <!-- Perubahan 1: Subtitle/Title -->
+            <h2>Software Engineer & Aspiring Tech Entrepreneur</h2>
             <p>Bridging computer science engineering with business development to build systems that align with real business needs.</p>
             <a href="#career" class="btn">Explore My Career</a>
         </div>
@@ -49,7 +50,8 @@
                 <div class="line"></div>
             </div>
             <div class="card about-card">
-                <p>IT Specialist and Software Developer with a Computer Science degree and ongoing Master's studies in Entrepreneurship. I have practical experience in full-stack development, database management, and IT infrastructure support. My focus is on writing clean code, solving technical problems efficiently, and building systems that align with real business needs. I am looking forward to leveraging both my engineering skills and business understanding to contribute to impactful projects.</p>
+                <!-- Perubahan 2: Penambahan kata-kata relevan pada Summary -->
+                <p>I am a Software Engineer with a solid foundation in Computer Science, currently advancing my business acumen through a Master's degree in Entrepreneurship. I have practical experience in full-stack development, database management, and IT infrastructure support. Passionate about writing clean, scalable code and solving complex technical challenges, I am driven by a strong ambition to bridge the gap between engineering and business strategy. My ultimate goal is to build innovative, market-fit technological solutions that address real-world business needs and create sustainable value.</p>
             </div>
         </div>
     </section>
@@ -67,7 +69,6 @@
                 <!-- Career Item 1: GLOSINS -->
                 <div class="card career-card">
                     <div class="company-logo">
-                        <!-- Ganti link src ini dengan logo perusahaan asli nantinya -->
                        <img src="images/Glosins.jpeg" alt="Glosins Logo">
                     </div>
                     <div class="career-details">
@@ -82,7 +83,6 @@
                 <!-- Career Item 2: SOFCO -->
                 <div class="card career-card">
                     <div class="company-logo">
-                        <!-- Ganti link src ini dengan logo perusahaan asli nantinya -->
                         <img src="images/Sofco.jpeg" alt="Sofco Logo">
                     </div>
                     <div class="career-details">
@@ -97,7 +97,6 @@
                 <!-- Career Item 3: FREELANCE -->
                 <div class="card career-card">
                     <div class="company-logo">
-                        <!-- Ganti link src ini dengan logo perusahaan asli nantinya -->
                         <img src="images/Fiverr.jpeg" alt="Freelance Logo">
                     </div>
                     <div class="career-details">
@@ -113,12 +112,67 @@
         </div>
     </section>
 
+    <!-- Perubahan 3: Education Section -->
+    <section id="education">
+        <div class="container">
+            <div class="section-header">
+                <h2>Education</h2>
+                <div class="line"></div>
+            </div>
+            
+            <div class="career-timeline">
+                
+                <!-- Education Item 1: Leeds Beckett -->
+                <div class="card career-card">
+                    <div class="company-logo">
+                        <img src="https://ui-avatars.com/api/?name=Leeds+Beckett&background=dc2626&color=fff&size=100&font-size=0.33" alt="Leeds Beckett University">
+                    </div>
+                    <div class="career-details">
+                        <div class="career-header">
+                            <h3>Master's Degree in Entrepreneurship & Business Development</h3>
+                            <span class="career-date">2025 – 2027</span>
+                        </div>
+                        <h4 class="company-name">Leeds Beckett University</h4>
+                        <p class="career-description">Leeds, United Kingdom</p>
+                    </div>
+                </div>
+
+                <!-- Education Item 2: Binus -->
+                <div class="card career-card">
+                    <div class="company-logo">
+                        <img src="https://ui-avatars.com/api/?name=Binus+University&background=ef4444&color=fff&size=100&font-size=0.33" alt="Bina Nusantara University">
+                    </div>
+                    <div class="career-details">
+                        <div class="career-header">
+                            <h3>Bachelor's Degree in Computer Science</h3>
+                            <span class="career-date">2020 – 2024</span>
+                        </div>
+                        <h4 class="company-name">Bina Nusantara University</h4>
+                        <p class="career-description">Jakarta, Indonesia</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
     <!-- Contact Section -->
     <section id="contact">
         <div class="container card contact-card">
             <h2>Let's Connect</h2>
             <p>I am open to professional networking, tech innovations, and business opportunities.</p>
-            <a href="mailto:febriansfiqri@gmail.com" class="btn btn-primary">Send an Email</a>
+            
+            <!-- Perubahan 4: Update Link Contact -->
+            <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; margin-top: 20px;">
+                <!-- Link langsung buka halaman compose Gmail -->
+                <a href="https://mail.google.com/mail/?view=cm&fs=1&to=febriansfiqri@gmail.com" target="_blank" class="btn btn-primary">Send an Email</a>
+                
+                <!-- Ganti link href di bawah ini dengan URL profil LinkedIn asli Anda -->
+                <a href="https://linkedin.com/in/muhammad-fiqri-febriansyah" target="_blank" class="btn">LinkedIn</a>
+                
+                <!-- Tautan langsung ke WhatsApp -->
+                <a href="https://wa.me/6282232103725" target="_blank" class="btn">WhatsApp</a>
+            </div>
         </div>
     </section>
 
