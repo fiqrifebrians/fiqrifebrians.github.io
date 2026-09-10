@@ -6,12 +6,14 @@
     scroll-behavior: smooth;
 }
 
-body {
+/* Kunci layar agar tidak bisa bocor digeser ke samping di HP */
+html, body {
     font-family: 'Plus Jakarta Sans', sans-serif;
     background-color: #f8fafc;
     color: #334155;
     line-height: 1.7;
     overflow-x: hidden;
+    width: 100%;
     position: relative;
 }
 
@@ -449,8 +451,59 @@ footer {
     z-index: 10;
 }
 
+/* ========================================= */
 /* Responsive Design (Mobile) */
+/* ========================================= */
 @media (max-width: 768px) {
+    
+    /* 1. Fix Header Navigasi agar bisa di-swipe rapi */
+    nav {
+        flex-direction: column;
+        padding: 15px 20px 5px 20px;
+        gap: 15px;
+    }
+    .nav-links {
+        width: 100%;
+        justify-content: flex-start;
+        overflow-x: auto; /* Memungkinkan menu di-swipe ke samping */
+        -webkit-overflow-scrolling: touch; /* Smooth scrolling di iPhone */
+        padding-bottom: 5px;
+    }
+    .nav-links::-webkit-scrollbar {
+        display: none; /* Sembunyikan garis scroll agar estetik */
+    }
+    .nav-links a {
+        white-space: nowrap; /* Mencegah teks jatuh bertumpuk */
+        font-size: 0.85rem;
+    }
+
+    /* Penyesuaian agar Hero section tidak tertutup Header di Mobile */
+    #hero {
+        padding-top: 130px; 
+    }
+
+    /* Penyesuaian font Hero di HP */
+    .hero-content h1 {
+        font-size: 2.5rem;
+    }
+
+    /* 2. Fix tombol Slider agar tidak bikin bocor layar */
+    .carousel-container {
+        padding: 0 15px; 
+    }
+    .carousel-btn {
+        width: 35px;
+        height: 35px;
+        font-size: 1rem;
+    }
+    .prev-btn {
+        left: 5px; /* Tombol masuk ke dalam bingkai layar */
+    }
+    .next-btn {
+        right: 5px; /* Tombol masuk ke dalam bingkai layar */
+    }
+
+    /* Layout Card menyesuaikan layar HP */
     .career-card {
         flex-direction: column;
         align-items: center;
@@ -459,18 +512,5 @@ footer {
     .career-header {
         flex-direction: column;
         gap: 10px;
-    }
-    nav {
-        flex-direction: column;
-        gap: 15px;
-    }
-    .hero-content h1 {
-        font-size: 2.5rem;
-    }
-    .prev-btn {
-        left: -10px;
-    }
-    .next-btn {
-        right: -10px;
     }
 }
