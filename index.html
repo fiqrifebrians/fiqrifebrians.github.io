@@ -4,6 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Muhammad Fiqri Febriansyah | Professional Portfolio</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" href="imagesFiqri.jpeg" type="image/png">
+    
     <link rel="stylesheet" href="style.css">
     <!-- Menggunakan Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
@@ -19,6 +23,7 @@
             <div class="logo">MFF.</div>
             <ul class="nav-links">
                 <li><a href="#about">About</a></li>
+                <li><a href="#projects">Projects</a></li>
                 <li><a href="#career">Career</a></li>
                 <li><a href="#education">Education</a></li>
                 <li><a href="#contact">Contact</a></li>
@@ -35,9 +40,9 @@
             </div>
             
             <h1 class="gradient-text">Muhammad Fiqri Febriansyah</h1>
-            <!-- Perubahan 1: Subtitle/Title -->
             <h2>Software Engineer & Aspiring Tech Entrepreneur</h2>
-<p>Bridging computer science engineering with business development to build systems that align with real business needs.</p>           <a href="#career" class="btn">Explore My Career</a>
+            <p>Bridging computer science engineering with business development to build systems that align with real business needs.</p>
+            <a href="#career" class="btn">Explore My Career</a>
         </div>
     </section>
 
@@ -49,8 +54,72 @@
                 <div class="line"></div>
             </div>
             <div class="card about-card">
-                <!-- Perubahan 2: Penambahan kata-kata relevan pada Summary -->
-<p>I am a Software Engineer with a background in Computer Science, currently pursuing a Master's in Entrepreneurship. While my experience is rooted in full-stack development, database management, and IT operations, my approach is focused on the bigger picture. For me, it is not just about writing clean code or chasing the latest tech—it is about bridging the gap between technical execution and business reality. I enjoy building practical, reliable systems that simply work and genuinely help businesses solve their day-to-day problems.</p>            </div>
+                <p>I am a Software Engineer with a background in Computer Science, currently pursuing a Master's in Entrepreneurship. While my experience is rooted in full-stack development, database management, and IT operations, my approach is focused on the bigger picture. For me, it is not just about writing clean code or chasing the latest tech—it is about bridging the gap between technical execution and business reality. I enjoy building practical, reliable systems that simply work and genuinely help businesses solve their day-to-day problems.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects">
+        <div class="container">
+            <div class="section-header">
+                <h2>My Projects</h2>
+                <div class="line"></div>
+            </div>
+            
+            <div class="carousel-container">
+                <button class="carousel-btn prev-btn">&#10094;</button>
+                
+                <div class="carousel-track-container">
+                    <ul class="carousel-track">
+                        
+                        <!-- Project 1 -->
+                        <li class="carousel-slide">
+                            <!-- Ganti href dengan link web asli -->
+                            <a href="https://your-link-here.com" target="_blank" class="project-link card">
+                                <div class="project-img-wrapper">
+                                    <img src="images/project1.jpeg" alt="Fitness Platform" class="project-img">
+                                </div>
+                                <div class="project-info">
+                                    <h3>Fitness & Nutrition Platform</h3>
+                                    <p>Athletic networking and meal tracking fitness platform ecosystem.</p>
+                                </div>
+                            </a>
+                        </li>
+
+                        <!-- Project 2 -->
+                        <li class="carousel-slide">
+                            <!-- Ganti href dengan link web asli -->
+                            <a href="https://your-link-here.com" target="_blank" class="project-link card">
+                                <div class="project-img-wrapper">
+                                    <img src="images/project2.jpeg" alt="Farming Automation" class="project-img">
+                                </div>
+                                <div class="project-info">
+                                    <h3>AI-Driven Farming Workflows</h3>
+                                    <p>General rice farming automation using Vic.ai, MindBridge, and Tidio AI.</p>
+                                </div>
+                            </a>
+                        </li>
+
+                        <!-- Project 3 -->
+                        <li class="carousel-slide">
+                            <!-- Ganti href dengan link web asli -->
+                            <a href="https://your-link-here.com" target="_blank" class="project-link card">
+                                <div class="project-img-wrapper">
+                                    <img src="images/project3.jpeg" alt="Sports Photography" class="project-img">
+                                </div>
+                                <div class="project-info">
+                                    <h3>Sports Photography Marketplace</h3>
+                                    <p>Sports photography platform connecting athletes using facial recognition.</p>
+                                </div>
+                            </a>
+                        </li>
+
+                    </ul>
+                </div>
+                
+                <button class="carousel-btn next-btn">&#10095;</button>
+            </div>
         </div>
     </section>
 
@@ -110,7 +179,7 @@
         </div>
     </section>
 
-    <!-- Perubahan 3: Education Section -->
+    <!-- Education Section -->
     <section id="education">
         <div class="container">
             <div class="section-header">
@@ -123,7 +192,7 @@
                 <!-- Education Item 1: Leeds Beckett -->
                 <div class="card career-card">
                     <div class="company-logo">
-                        <img src="images/LBU.jpeg" alt="Sofco Logo">
+                        <img src="images/LBU.jpeg" alt="Leeds Beckett University">
                     </div>
                     <div class="career-details">
                         <div class="career-header">
@@ -138,7 +207,7 @@
                 <!-- Education Item 2: Binus -->
                 <div class="card career-card">
                     <div class="company-logo">
-                        <img src="images/Binus.jpeg" alt="Sofco Logo">
+                        <img src="images/Binus.jpeg" alt="Bina Nusantara University">
                     </div>
                     <div class="career-details">
                         <div class="career-header">
@@ -160,10 +229,9 @@
             <h2>Let's Connect</h2>
             <p>I am open to professional networking, tech innovations, and business opportunities.</p>
             
-            <!-- Perubahan 4: Update Link Contact -->
             <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; margin-top: 20px;">
-                <a href="https://mail.google.com/mail/?view=cm&fs=1&to=febriansfiqri@gmail.com" target="_blank" class="btn">Send an Email</a>
-                <a href="https://linkedin.com/in/fiqri-febriansyah/" target="_blank" class="btn">LinkedIn</a>
+                <a href="https://mail.google.com/mail/?view=cm&fs=1&to=febriansfiqri@gmail.com" target="_blank" class="btn btn-primary">Send an Email</a>
+                <a href="https://linkedin.com/in/muhammad-fiqri-febriansyah" target="_blank" class="btn">LinkedIn</a>
                 <a href="https://wa.me/6282232103725" target="_blank" class="btn">WhatsApp</a>
             </div>
         </div>
@@ -173,5 +241,35 @@
     <footer>
         <p>&copy; 2026 Muhammad Fiqri Febriansyah. Built with GitHub Pages.</p>
     </footer>
+
+    <!-- Script Carousel untuk Projects -->
+    <script>
+        const track = document.querySelector('.carousel-track');
+        const nextBtn = document.querySelector('.next-btn');
+        const prevBtn = document.querySelector('.prev-btn');
+
+        nextBtn.addEventListener('click', () => {
+            const firstSlide = document.querySelector('.carousel-slide');
+            track.style.transition = "transform 0.4s ease-in-out";
+            track.style.transform = "translateX(-100%)";
+            setTimeout(() => {
+                track.style.transition = "none";
+                track.appendChild(firstSlide);
+                track.style.transform = "translateX(0)";
+            }, 400);
+        });
+
+        prevBtn.addEventListener('click', () => {
+            const slides = document.querySelectorAll('.carousel-slide');
+            const lastSlide = slides[slides.length - 1];
+            track.style.transition = "none";
+            track.insertBefore(lastSlide, slides[0]);
+            track.style.transform = "translateX(-100%)";
+            setTimeout(() => {
+                track.style.transition = "transform 0.4s ease-in-out";
+                track.style.transform = "translateX(0)";
+            }, 10);
+        });
+    </script>
 </body>
 </html>
