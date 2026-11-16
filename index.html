@@ -13,11 +13,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- Background Decor -->
-    <div class="bg-shape shape-1"></div>
-    <div class="bg-shape shape-2"></div>
+    <!-- Interactive Minimalist Background -->
+    <canvas id="particle-canvas"></canvas>
 
-    <!-- Navigation Bar -->
+    <!-- Floating Minimalist Header -->
     <header>
         <nav>
             <div class="logo">MFF.</div>
@@ -25,6 +24,7 @@
                 <li><a href="#about">About</a></li>
                 <li><a href="#projects">Projects</a></li>
                 <li><a href="#career">Career</a></li>
+                <li><a href="#skills">Skills</a></li>
                 <li><a href="#education">Education</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
@@ -59,7 +59,7 @@
         </div>
     </section>
 
-    <!-- Projects Section -->
+    <!-- Projects Section (3-Column Carousel) -->
     <section id="projects">
         <div class="container">
             <div class="section-header">
@@ -67,68 +67,66 @@
                 <div class="line"></div>
             </div>
             
-            <div class="carousel-container">
-                <button class="carousel-btn prev-btn">&#10094;</button>
+            <div class="carousel-wrapper">
+                <button class="carousel-btn prev-btn" id="prevBtn">&#10094;</button>
                 
-                <div class="carousel-track-container">
-                    <ul class="carousel-track">
-                        
-                        <!-- Project 1: Formix -->
-                        <li class="carousel-slide">
-                            <a href="https://fiqrifebrians.github.io/Formix/" target="_blank" class="project-link card">
-                                <div class="project-img-wrapper">
-                                    <img src="images/formix.png" alt="Formix Project" class="project-img">
-                                </div>
-                                <div class="project-info">
-                                    <h3>Formix</h3>
-                                    <p>A fitness web application with visual exercise guides and customizable workout tracking.</p>
-                                </div>
-                            </a>
-                        </li>
+                <div class="carousel-track" id="projectTrack">
+                    
+                    <!-- Project 1: Formix -->
+                    <div class="carousel-slide">
+                        <a href="https://fiqrifebrians.github.io/Formix/" target="_blank" class="project-link card">
+                            <div class="project-img-wrapper">
+                                <img src="images/formix.png" alt="Formix Project" class="project-img">
+                            </div>
+                            <div class="project-info">
+                                <h3>Formix</h3>
+                                <p>A modern and responsive web interface solution.</p>
+                            </div>
+                        </a>
+                    </div>
 
-                        <!-- Project 2: Wisher -->
-                        <li class="carousel-slide">
-                            <a href="https://fiqrifebrians.github.io/Wisher/" target="_blank" class="project-link card">
-                                <div class="project-img-wrapper">
-                                    <img src="images/wisher.png" alt="Wisher Project" class="project-img">
-                                </div>
-                                <div class="project-info">
-                                    <h3>Wisher</h3>
-                                    <p>A minimalist web platform to beautifully curate, organize, and track personal wishlists.</p>
-                                </div>
-                            </a>
-                        </li>
+                    <!-- Project 2: Wisher -->
+                    <div class="carousel-slide">
+                        <a href="#" target="_blank" class="project-link card">
+                            <div class="project-img-wrapper">
+                                <img src="images/wisher.png" alt="Wisher Project" class="project-img">
+                            </div>
+                            <div class="project-info">
+                                <h3>Wisher</h3>
+                                <p>A minimalist web platform to beautifully curate, organize, and track personal wishlists.</p>
+                            </div>
+                        </a>
+                    </div>
 
-                        <!-- Project 3: Nusa Translate -->
-                        <li class="carousel-slide">
-                            <a href="https://fiqrifebrians.github.io/Nusa-Translate/" target="_blank" class="project-link card">
-                                <div class="project-img-wrapper">
-                                    <img src="images/nusa-translate.png" alt="Nusa Translate Project" class="project-img">
-                                </div>
-                                <div class="project-info">
-                                    <h3>Nusa Translate</h3>
-                                    <p>A dedicated translation web application for Indonesian regional languages.</p>
-                                </div>
-                            </a>
-                        </li>
+                    <!-- Project 3: Nusa Translate -->
+                    <div class="carousel-slide">
+                        <a href="https://fiqrifebrians.github.io/Nusa-Translate/" target="_blank" class="project-link card">
+                            <div class="project-img-wrapper">
+                                <img src="images/nusa-translate.png" alt="Nusa Translate Project" class="project-img">
+                            </div>
+                            <div class="project-info">
+                                <h3>Nusa Translate</h3>
+                                <p>A dedicated translation web application for Indonesian languages.</p>
+                            </div>
+                        </a>
+                    </div>
 
-                        <!-- Project 4: 2022 AFF Championship Concept Kit -->
-                        <li class="carousel-slide">
-                            <a href="https://www.behance.net/gallery/159799401/2022-AFF-Championship-Concept-Kit" target="_blank" class="project-link card">
-                                <div class="project-img-wrapper">
-                                    <img src="images/2022-aff.png" alt="2022 AFF Championship Concept Kit" class="project-img">
-                                </div>
-                                <div class="project-info">
-                                    <h3>2022 AFF Concept Kit</h3>
-                                    <p>Creative football concept kit designs for the 2022 AFF Championship.</p>
-                                </div>
-                            </a>
-                        </li>
+                    <!-- Project 4: 2022 AFF Championship Concept Kit -->
+                    <div class="carousel-slide">
+                        <a href="https://www.behance.net/gallery/159799401/2022-AFF-Championship-Concept-Kit" target="_blank" class="project-link card">
+                            <div class="project-img-wrapper">
+                                <img src="images/2022-aff.png" alt="2022 AFF Championship Concept Kit" class="project-img">
+                            </div>
+                            <div class="project-info">
+                                <h3>2022 AFF Concept Kit</h3>
+                                <p>Creative football concept kit designs for the 2022 AFF Championship.</p>
+                            </div>
+                        </a>
+                    </div>
 
-                    </ul>
                 </div>
                 
-                <button class="carousel-btn next-btn">&#10095;</button>
+                <button class="carousel-btn next-btn" id="nextBtn">&#10095;</button>
             </div>
         </div>
     </section>
@@ -142,7 +140,6 @@
             </div>
             
             <div class="career-timeline">
-                
                 <!-- Career Item 1: GLOSINS -->
                 <div class="card career-card">
                     <div class="company-logo">
@@ -184,7 +181,28 @@
                         <h4 class="company-name">Freelance</h4>
                     </div>
                 </div>
+            </div>
+        </div>
+    </section>
 
+    <!-- Skills Section -->
+    <section id="skills">
+        <div class="container">
+            <div class="section-header">
+                <h2>Skills & Expertise</h2>
+                <div class="line"></div>
+            </div>
+            <div class="skills-container">
+                <span class="skill-badge">Web Development</span>
+                <span class="skill-badge">Database Management</span>
+                <span class="skill-badge">Business Development</span>
+                <span class="skill-badge">Applied AI</span>
+                <span class="skill-badge">IT Systems</span>
+                <span class="skill-badge">Project Management</span>
+                <span class="skill-badge">Graphic Design</span>
+                <span class="skill-badge">UI/UX Design</span>
+                <span class="skill-badge">JavaScript</span>
+                <span class="skill-badge">React.js & Node.js</span>
             </div>
         </div>
     </section>
@@ -198,7 +216,6 @@
             </div>
             
             <div class="career-timeline">
-                
                 <!-- Education Item 1: Leeds Beckett -->
                 <div class="card career-card">
                     <div class="company-logo">
@@ -228,7 +245,6 @@
                         <p class="career-description">Jakarta, Indonesia</p>
                     </div>
                 </div>
-
             </div>
         </div>
     </section>
@@ -239,9 +255,9 @@
             <h2>Let's Connect</h2>
             <p>I am open to professional networking, tech innovations, and business opportunities.</p>
             
-            <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; margin-top: 20px;">
+            <div class="contact-links">
                 <a href="https://mail.google.com/mail/?view=cm&fs=1&to=febriansfiqri@gmail.com" target="_blank" class="btn btn-primary">Send an Email</a>
-                <a href="https://linkedin.com/in/fiqri-febriansyah" target="_blank" class="btn">LinkedIn</a>
+                <a href="https://linkedin.com/in/muhammad-fiqri-febriansyah" target="_blank" class="btn">LinkedIn</a>
                 <a href="https://wa.me/6282232103725" target="_blank" class="btn">WhatsApp</a>
             </div>
         </div>
@@ -252,33 +268,133 @@
         <p>&copy; 2026 Muhammad Fiqri Febriansyah. Built with GitHub Pages.</p>
     </footer>
 
-    <!-- Script Carousel untuk Projects -->
+    <!-- Interactive Background & Carousel Script -->
     <script>
-        const track = document.querySelector('.carousel-track');
-        const nextBtn = document.querySelector('.next-btn');
-        const prevBtn = document.querySelector('.prev-btn');
+        // 1. Simple Particle Network Background
+        const canvas = document.getElementById('particle-canvas');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        let particlesArray;
+        // Interaksi mouse
+        let mouse = {
+            x: null,
+            y: null,
+            radius: 120
+        }
+
+        window.addEventListener('mousemove', function(event) {
+            mouse.x = event.x;
+            mouse.y = event.y;
+        });
+        window.addEventListener('mouseout', function() {
+            mouse.x = undefined;
+            mouse.y = undefined;
+        });
+
+        class Particle {
+            constructor(x, y, directionX, directionY, size, color) {
+                this.x = x;
+                this.y = y;
+                this.directionX = directionX;
+                this.directionY = directionY;
+                this.size = size;
+                this.color = color;
+            }
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2, false);
+                ctx.fillStyle = '#fca5a5'; // Subtle red color
+                ctx.fill();
+            }
+            update() {
+                if (this.x > canvas.width || this.x < 0) {
+                    this.directionX = -this.directionX;
+                }
+                if (this.y > canvas.height || this.y < 0) {
+                    this.directionY = -this.directionY;
+                }
+                // Cek interaksi kursor
+                let dx = mouse.x - this.x;
+                let dy = mouse.y - this.y;
+                let distance = Math.sqrt(dx * dx + dy * dy);
+                if (distance < mouse.radius) {
+                    if (mouse.x < this.x && this.x < canvas.width - this.size * 10) this.x += 2;
+                    if (mouse.x > this.x && this.x > this.size * 10) this.x -= 2;
+                    if (mouse.y < this.y && this.y < canvas.height - this.size * 10) this.y += 2;
+                    if (mouse.y > this.y && this.y > this.size * 10) this.y -= 2;
+                }
+                this.x += this.directionX;
+                this.y += this.directionY;
+                this.draw();
+            }
+        }
+
+        function init() {
+            particlesArray = [];
+            let numberOfParticles = (canvas.height * canvas.width) / 12000;
+            for (let i = 0; i < numberOfParticles; i++) {
+                let size = (Math.random() * 2) + 1;
+                let x = (Math.random() * ((innerWidth - size * 2) - (size * 2)) + size * 2);
+                let y = (Math.random() * ((innerHeight - size * 2) - (size * 2)) + size * 2);
+                let directionX = (Math.random() * 1) - 0.5;
+                let directionY = (Math.random() * 1) - 0.5;
+                let color = '#fca5a5';
+                particlesArray.push(new Particle(x, y, directionX, directionY, size, color));
+            }
+        }
+
+        function animate() {
+            requestAnimationFrame(animate);
+            ctx.clearRect(0, 0, innerWidth, innerHeight);
+            for (let i = 0; i < particlesArray.length; i++) {
+                particlesArray[i].update();
+            }
+            connect();
+        }
+
+        function connect() {
+            let opacityValue = 1;
+            for (let a = 0; a < particlesArray.length; a++) {
+                for (let b = a; b < particlesArray.length; b++) {
+                    let distance = ((particlesArray[a].x - particlesArray[b].x) * (particlesArray[a].x - particlesArray[b].x)) + 
+                                   ((particlesArray[a].y - particlesArray[b].y) * (particlesArray[a].y - particlesArray[b].y));
+                    if (distance < (canvas.width / 10) * (canvas.height / 10)) {
+                        opacityValue = 1 - (distance / 15000);
+                        ctx.strokeStyle = 'rgba(220, 38, 38, ' + opacityValue * 0.15 + ')';
+                        ctx.lineWidth = 1;
+                        ctx.beginPath();
+                        ctx.moveTo(particlesArray[a].x, particlesArray[a].y);
+                        ctx.lineTo(particlesArray[b].x, particlesArray[b].y);
+                        ctx.stroke();
+                    }
+                }
+            }
+        }
+
+        window.addEventListener('resize', function() {
+            canvas.width = innerWidth;
+            canvas.height = innerHeight;
+            init();
+        });
+
+        init();
+        animate();
+
+        // 2. Carousel Slider Logic (3 Columns Scroll By)
+        const track = document.getElementById('projectTrack');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
 
         nextBtn.addEventListener('click', () => {
-            const firstSlide = document.querySelector('.carousel-slide');
-            track.style.transition = "transform 0.4s ease-in-out";
-            track.style.transform = "translateX(-100%)";
-            setTimeout(() => {
-                track.style.transition = "none";
-                track.appendChild(firstSlide);
-                track.style.transform = "translateX(0)";
-            }, 400);
+            const slideWidth = document.querySelector('.carousel-slide').offsetWidth + 20; // 20px is gap
+            track.scrollBy({ left: slideWidth, behavior: 'smooth' });
         });
 
         prevBtn.addEventListener('click', () => {
-            const slides = document.querySelectorAll('.carousel-slide');
-            const lastSlide = slides[slides.length - 1];
-            track.style.transition = "none";
-            track.insertBefore(lastSlide, slides[0]);
-            track.style.transform = "translateX(-100%)";
-            setTimeout(() => {
-                track.style.transition = "transform 0.4s ease-in-out";
-                track.style.transform = "translateX(0)";
-            }, 10);
+            const slideWidth = document.querySelector('.carousel-slide').offsetWidth + 20;
+            track.scrollBy({ left: -slideWidth, behavior: 'smooth' });
         });
     </script>
 </body>
