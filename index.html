@@ -13,10 +13,19 @@
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- Dynamic Soft Gradient Background -->
-    <div class="bg-shape shape-1"></div>
-    <div class="bg-shape shape-2"></div>
-    <div class="bg-shape shape-3"></div>
+    <!-- Dynamic Soft Gradient Background (7 Orbs + Interaktif) -->
+    <div id="bg-container">
+        <!-- Elemen statis/animasi melayang -->
+        <div class="bg-orb orb-1"></div>
+        <div class="bg-orb orb-2"></div>
+        <div class="bg-orb orb-3"></div>
+        <div class="bg-orb orb-4"></div>
+        <div class="bg-orb orb-5"></div>
+        <div class="bg-orb orb-6"></div>
+        <div class="bg-orb orb-7"></div>
+        <!-- Kursor Interaktif -->
+        <div id="cursor-orb"></div>
+    </div>
 
     <!-- Floating Minimalist Header -->
     <header id="main-header">
@@ -276,7 +285,52 @@
     </footer>
 
     <script>
+        // ----------------------------------------------------
+        // MOUSE FOLLOWER & CLICK PULSE LOGIC
+        // ----------------------------------------------------
+        const cursorOrb = document.getElementById('cursor-orb');
+        let mouseX = window.innerWidth / 2;
+        let mouseY = window.innerHeight / 2;
+        let orbX = mouseX;
+        let orbY = mouseY;
+
+        // Mendeteksi pergerakan mouse
+        window.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+        });
+
+        // Animasi agar pergerakan orb halus (easing) mengikuti kursor
+        function animateCursorOrb() {
+            orbX += (mouseX - orbX) * 0.1; // Kecepatan easing, semakin besar semakin cepat
+            orbY += (mouseY - orbY) * 0.1;
+            
+            cursorOrb.style.transform = `translate(${orbX}px, ${orbY}px)`;
+            
+            requestAnimationFrame(animateCursorOrb);
+        }
+        animateCursorOrb();
+
+        // Reaksi klik pada layar
+        window.addEventListener('click', (e) => {
+            // Hapus class pulse jika sudah ada untuk retrigger
+            cursorOrb.classList.remove('click-pulse');
+            // Sedikit delay agar DOM bisa me-render ulang
+            void cursorOrb.offsetWidth; 
+            cursorOrb.classList.add('click-pulse');
+        });
+        
+        // Reaksi pergeseran parallax saat scroll
+        const bgContainer = document.getElementById('bg-container');
+        window.addEventListener('scroll', () => {
+            let scrollOffset = window.scrollY * 0.15; // Kecepatan parallax
+            // Geser seluruh container background berlawanan dengan arah scroll
+            bgContainer.style.transform = `translateY(${scrollOffset}px)`;
+        });
+
+        // ----------------------------------------------------
         // Mobile Header Scroll Logic
+        // ----------------------------------------------------
         let lastScrollY = window.scrollY;
         const header = document.getElementById('main-header');
 
@@ -293,7 +347,9 @@
             lastScrollY = window.scrollY;
         });
 
+        // ----------------------------------------------------
         // Carousel Slider Logic (3 Columns Scroll By)
+        // ----------------------------------------------------
         const track = document.getElementById('projectTrack');
         const prevBtn = document.getElementById('prevBtn');
         const nextBtn = document.getElementById('nextBtn');
