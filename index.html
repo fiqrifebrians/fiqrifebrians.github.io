@@ -324,16 +324,6 @@
                     cursorOrb.classList.add('click-pulse');
                 }
             });
-            
-            // Reaksi pergeseran parallax saat scroll
-            const bgContainer = document.getElementById('bg-container');
-            window.addEventListener('scroll', () => {
-                let scrollOffset = window.scrollY * 0.15; // Kecepatan parallax
-                // Geser seluruh container background berlawanan dengan arah scroll
-                if(bgContainer) {
-                    bgContainer.style.transform = `translateY(${scrollOffset}px)`;
-                }
-            });
 
             // ----------------------------------------------------
             // Mobile Header Scroll Logic

@@ -6,11 +6,6 @@
     scroll-behavior: smooth;
 }
 
-/* 
-  Perbaikan: 
-  Hapus background putih solid pada html dan body, 
-  agar #bg-container (yang berada di z-index -1) bisa terlihat 
-*/
 html, body {
     font-family: 'Plus Jakarta Sans', sans-serif;
     color: #334155;
@@ -162,6 +157,7 @@ section {
     position: relative;
     z-index: 5;
     background: transparent;
+    scroll-margin-top: 100px; /* Jarak aman dari header saat di-klik lewat navigasi */
 }
 
 .container {
