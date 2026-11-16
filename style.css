@@ -8,7 +8,7 @@
 
 html, body {
     font-family: 'Plus Jakarta Sans', sans-serif;
-    background-color: #ffffff; /* Warna dasar dominan putih bersih */
+    background-color: #ffffff;
     color: #334155;
     line-height: 1.7;
     overflow-x: hidden;
@@ -17,49 +17,138 @@ html, body {
     scroll-padding-top: 120px; 
 }
 
-/* Background Glowing Red Orbs (Dynamic & Fast) */
-.bg-shape {
+/* ---------------------------------------------------- */
+/* NEW DYNAMIC BACKGROUND (7 Orbs + Mouse Follower)     */
+/* ---------------------------------------------------- */
+#bg-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+    overflow: hidden;
+    pointer-events: none; /* Penting: agar kursor bisa klik elemen di depannya */
+    background: #ffffff; /* Dasar putih bersih */
+}
+
+/* Glowing Orbs (Bentuk abstrak gradien merah) */
+.bg-orb {
     position: absolute;
     border-radius: 50%;
-    filter: blur(75px); /* Blur dikurangi agar bentuk & warna lebih tajam */
-    z-index: 0;
+    filter: blur(85px); /* Sedikit disesuaikan agar tetap tajam namun membaur */
+    opacity: 0.6;
     animation: floatOrb ease-in-out infinite alternate;
+    will-change: transform;
 }
 
-.shape-1 {
-    width: 450px;
-    height: 450px;
-    background: rgba(220, 38, 38, 0.55); /* Merah lebih tegas dan kontras */
-    top: -50px;
-    left: -50px;
-    animation-duration: 6s; /* Dipercepat */
+/* Orb 1: Merah Tajam, Besar, Kiri Atas */
+.orb-1 {
+    width: 500px;
+    height: 500px;
+    background: rgba(220, 38, 38, 0.65); /* #DC2626 */
+    top: -100px;
+    left: -100px;
+    animation-duration: 7s;
 }
 
-.shape-2 {
-    width: 550px;
-    height: 550px;
-    background: rgba(239, 68, 68, 0.45);
-    bottom: 10%;
-    right: -100px;
-    animation-duration: 8s; /* Dipercepat */
+/* Orb 2: Merah Terang, Sedang, Kanan Bawah */
+.orb-2 {
+    width: 400px;
+    height: 400px;
+    background: rgba(239, 68, 68, 0.6); /* #EF4444 */
+    bottom: -50px;
+    right: -50px;
+    animation-duration: 9s;
     animation-direction: alternate-reverse;
 }
 
-.shape-3 {
-    width: 400px;
-    height: 400px;
-    background: rgba(220, 38, 38, 0.65); /* Merah paling pekat */
-    top: 40%;
-    left: 20%;
-    animation-duration: 5s; /* Sangat responsif & dinamis */
+/* Orb 3: Merah Gelap, Tengah Kiri */
+.orb-3 {
+    width: 350px;
+    height: 350px;
+    background: rgba(185, 28, 28, 0.55); /* #B91C1C */
+    top: 30%;
+    left: -150px;
+    animation-duration: 11s;
 }
 
-/* Perluasan jangkauan pergeseran animasi */
+/* Orb 4: Merah Lembut, Tengah Kanan */
+.orb-4 {
+    width: 450px;
+    height: 450px;
+    background: rgba(248, 113, 113, 0.45);
+    top: 40%;
+    right: -100px;
+    animation-duration: 8s;
+    animation-direction: alternate-reverse;
+}
+
+/* Orb 5: Aksen Merah Tajam, Kecil, Bergerak Liar */
+.orb-5 {
+    width: 200px;
+    height: 200px;
+    background: rgba(220, 38, 38, 0.7);
+    top: 70%;
+    left: 40%;
+    animation-duration: 5s;
+}
+
+/* Orb 6: Merah Sedang, Kiri Bawah */
+.orb-6 {
+    width: 300px;
+    height: 300px;
+    background: rgba(239, 68, 68, 0.5);
+    bottom: -100px;
+    left: 20%;
+    animation-duration: 10s;
+}
+
+/* Orb 7: Merah Lembut, Atas Tengah */
+.orb-7 {
+    width: 380px;
+    height: 380px;
+    background: rgba(248, 113, 113, 0.5);
+    top: -150px;
+    left: 45%;
+    animation-duration: 12s;
+    animation-direction: alternate-reverse;
+}
+
+/* Pola pergerakan bawaan Orbs */
 @keyframes floatOrb {
     0% { transform: translate(0, 0) scale(1); }
-    50% { transform: translate(25vw, -20vh) scale(1.2); }
-    100% { transform: translate(-20vw, 30vh) scale(0.85); }
+    50% { transform: translate(25vw, -15vh) scale(1.15); }
+    100% { transform: translate(-20vw, 20vh) scale(0.9); }
 }
+
+/* Interaktif: Gradien mengikuti kursor */
+#cursor-orb {
+    position: absolute;
+    width: 350px;
+    height: 350px;
+    border-radius: 50%;
+    background: rgba(220, 38, 38, 0.7); /* Merah tajam */
+    filter: blur(90px);
+    pointer-events: none;
+    top: 0;
+    left: 0;
+    transform: translate(-50%, -50%); /* Posisikan tengah kursor */
+    transition: transform 0.15s ease-out; /* Pergerakan halus mengekor */
+    z-index: 1;
+}
+
+/* Interaktif: Efek Denyut saat Klik */
+.click-pulse {
+    animation: pulseOrb 0.6s ease-out forwards;
+}
+
+@keyframes pulseOrb {
+    0% { transform: translate(-50%, -50%) scale(1); opacity: 0.7; }
+    50% { transform: translate(-50%, -50%) scale(1.5); opacity: 0.9; }
+    100% { transform: translate(-50%, -50%) scale(1); opacity: 0.7; }
+}
+/* ---------------------------------------------------- */
 
 .container {
     max-width: 1100px;
@@ -71,7 +160,7 @@ html, body {
 
 /* Kartu / Cards Style */
 .card {
-    background: #ffffff; /* Memastikan isi card tetap putih solid sehingga teks mudah dibaca */
+    background: #ffffff; /* Latar kartu putih solid agar teks tetap jelas */
     border: 1px solid #f1f5f9;
     border-radius: 16px;
     padding: 40px;
@@ -189,8 +278,7 @@ nav {
 }
 
 .hero-content {
-    /* Shadow putih halus di belakang konten hero agar teks tetap sangat jelas jika tertimpa orb merah */
-    text-shadow: 0 0 20px rgba(255,255,255,0.9), 0 0 40px rgba(255,255,255,1);
+    text-shadow: 0 0 20px rgba(255,255,255,0.9), 0 0 40px rgba(255,255,255,1); /* Menjaga teks tetap bersih jika tertimpa orb merah tajam */
 }
 
 .profile-image-container {
@@ -245,7 +333,7 @@ nav {
     background: #ffffff;
     color: #dc2626;
     border: 2px solid #dc2626;
-    text-shadow: none; /* Menghilangkan text-shadow putih pada teks tombol */
+    text-shadow: none; 
 }
 
 .btn-hero:hover {
@@ -484,7 +572,7 @@ section {
 
 .contact-links {
     display: flex; 
-    gap: 25px; /* Jarak proporsional antar ikon */
+    gap: 25px; 
     justify-content: center; 
     align-items: center;
     margin-top: 20px;
@@ -511,7 +599,7 @@ section {
 }
 
 .contact-icon-link:hover {
-    transform: translateY(-5px) scale(1.08); /* Efek membesar (scale-up) yang lebih tegas */
+    transform: translateY(-5px) scale(1.08); 
     box-shadow: 0 12px 25px rgba(220, 38, 38, 0.15);
     border-color: #fca5a5;
 }
@@ -531,14 +619,12 @@ footer {
 /* Responsive Design (Tablet & Mobile)       */
 /* ========================================= */
 @media (max-width: 900px) {
-    /* Carousel: 2 Kolom di Tablet */
     .carousel-slide {
         flex: 0 0 calc(50% - 10px);
     }
 }
 
 @media (max-width: 768px) {
-    /* Header Mobile Modification */
     header {
         top: 15px;
         width: 92%;
@@ -547,7 +633,6 @@ footer {
         transform: translateX(-50%);
     }
 
-    /* Menghilangkan tulisan MFF di mobile */
     .logo {
         display: none;
     }
@@ -579,7 +664,6 @@ footer {
         font-size: 0.9rem;
     }
 
-    /* Penyesuaian Hero di HP */
     #hero {
         padding-top: 150px; 
     }
@@ -587,14 +671,12 @@ footer {
         font-size: 2.5rem;
     }
 
-    /* Carousel: 1 Kolom di Mobile */
     .carousel-slide {
         flex: 0 0 100%;
     }
     .prev-btn { left: -5px; }
     .next-btn { right: -5px; }
 
-    /* Layout Card */
     .career-card {
         flex-direction: column;
         align-items: center;
