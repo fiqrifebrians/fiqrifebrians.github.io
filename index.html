@@ -13,6 +13,11 @@
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
+    <!-- Dynamic Soft Gradient Background -->
+    <div class="bg-shape shape-1"></div>
+    <div class="bg-shape shape-2"></div>
+    <div class="bg-shape shape-3"></div>
+
     <!-- Floating Minimalist Header -->
     <header id="main-header">
         <nav>
@@ -31,7 +36,7 @@
     <!-- Hero Section -->
     <section id="hero">
         <div class="hero-content">
-            <!-- TEMPAT FOTO PROFIL -->
+            <!-- Foto Profil -->
             <div class="profile-image-container">
                 <img src="images/Fiqri.jpeg" alt="Muhammad Fiqri Febriansyah" class="profile-photo">
             </div>
@@ -65,10 +70,9 @@
             </div>
             
             <div class="carousel-wrapper">
-                <button class="carousel-btn prev-btn" id="prevBtn">&#10094;</button>
+                <button class="carousel-btn prev-btn" id="prevBtn" aria-label="Previous Project">&#10094;</button>
                 
                 <div class="carousel-track" id="projectTrack">
-                    
                     <!-- Project 1: Formix -->
                     <div class="carousel-slide">
                         <a href="https://fiqrifebrians.github.io/Formix/" target="_blank" rel="noopener noreferrer" class="project-link card">
@@ -120,10 +124,9 @@
                             </div>
                         </a>
                     </div>
-
                 </div>
                 
-                <button class="carousel-btn next-btn" id="nextBtn">&#10095;</button>
+                <button class="carousel-btn next-btn" id="nextBtn" aria-label="Next Project">&#10095;</button>
             </div>
         </div>
     </section>
@@ -252,15 +255,16 @@
             <h2>Let's Connect</h2>
             <p>I am open to professional networking, tech innovations, and business opportunities.</p>
             
+            <!-- Tampilan Contacts Icon-Only -->
             <div class="contact-links">
-                <a href="https://mail.google.com/mail/?view=cm&fs=1&to=febriansfiqri@gmail.com" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
-                    <img src="images/gmail.png" alt="Gmail" class="contact-icon"> Send an Email
+                <a href="https://mail.google.com/mail/?view=cm&fs=1&to=febriansfiqri@gmail.com" target="_blank" rel="noopener noreferrer" class="contact-icon-link" aria-label="Send an Email">
+                    <img src="images/gmail.png" alt="Gmail" class="contact-icon-only">
                 </a>
-                <a href="https://www.linkedin.com/in/fiqri-febriansyah/" target="_blank" rel="noopener noreferrer" class="btn">
-                    <img src="images/linkedin.png" alt="LinkedIn" class="contact-icon"> LinkedIn
+                <a href="https://www.linkedin.com/in/fiqri-febriansyah/" target="_blank" rel="noopener noreferrer" class="contact-icon-link" aria-label="LinkedIn">
+                    <img src="images/linkedin.png" alt="LinkedIn" class="contact-icon-only">
                 </a>
-                <a href="https://wa.me/6282232103725" target="_blank" rel="noopener noreferrer" class="btn">
-                    <img src="images/whatsapp.png" alt="WhatsApp" class="contact-icon"> WhatsApp
+                <a href="https://wa.me/6282232103725" target="_blank" rel="noopener noreferrer" class="contact-icon-link" aria-label="WhatsApp">
+                    <img src="images/whatsapp.png" alt="WhatsApp" class="contact-icon-only">
                 </a>
             </div>
         </div>
@@ -272,34 +276,30 @@
     </footer>
 
     <script>
-        // 1. Mobile Header Scroll Logic
+        // Mobile Header Scroll Logic
         let lastScrollY = window.scrollY;
         const header = document.getElementById('main-header');
 
         window.addEventListener('scroll', () => {
-            // Berlaku untuk layar mobile & tablet
             if (window.innerWidth <= 768) {
                 if (window.scrollY > lastScrollY && window.scrollY > 80) {
-                    // Sembunyikan header saat scroll ke bawah
                     header.classList.add('header-hidden');
                 } else {
-                    // Tampilkan kembali saat scroll ke atas
                     header.classList.remove('header-hidden');
                 }
             } else {
-                // Pastikan header tetap tampil normal jika layar di-resize ke desktop
                 header.classList.remove('header-hidden');
             }
             lastScrollY = window.scrollY;
         });
 
-        // 2. Carousel Slider Logic (3 Columns Scroll By)
+        // Carousel Slider Logic (3 Columns Scroll By)
         const track = document.getElementById('projectTrack');
         const prevBtn = document.getElementById('prevBtn');
         const nextBtn = document.getElementById('nextBtn');
 
         nextBtn.addEventListener('click', () => {
-            const slideWidth = document.querySelector('.carousel-slide').offsetWidth + 20; // 20px is gap
+            const slideWidth = document.querySelector('.carousel-slide').offsetWidth + 20; 
             track.scrollBy({ left: slideWidth, behavior: 'smooth' });
         });
 
