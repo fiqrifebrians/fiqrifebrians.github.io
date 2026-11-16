@@ -285,83 +285,95 @@
     </footer>
 
     <script>
-        // ----------------------------------------------------
-        // MOUSE FOLLOWER & CLICK PULSE LOGIC
-        // ----------------------------------------------------
-        const cursorOrb = document.getElementById('cursor-orb');
-        let mouseX = window.innerWidth / 2;
-        let mouseY = window.innerHeight / 2;
-        let orbX = mouseX;
-        let orbY = mouseY;
+        document.addEventListener('DOMContentLoaded', () => {
+            // ----------------------------------------------------
+            // MOUSE FOLLOWER & CLICK PULSE LOGIC
+            // ----------------------------------------------------
+            const cursorOrb = document.getElementById('cursor-orb');
+            let mouseX = window.innerWidth / 2;
+            let mouseY = window.innerHeight / 2;
+            let orbX = mouseX;
+            let orbY = mouseY;
 
-        // Mendeteksi pergerakan mouse
-        window.addEventListener('mousemove', (e) => {
-            mouseX = e.clientX;
-            mouseY = e.clientY;
-        });
+            // Mendeteksi pergerakan mouse
+            window.addEventListener('mousemove', (e) => {
+                mouseX = e.clientX;
+                mouseY = e.clientY;
+            });
 
-        // Animasi agar pergerakan orb halus (easing) mengikuti kursor
-        function animateCursorOrb() {
-            orbX += (mouseX - orbX) * 0.1; // Kecepatan easing, semakin besar semakin cepat
-            orbY += (mouseY - orbY) * 0.1;
+            // Animasi agar pergerakan orb halus (easing) mengikuti kursor
+            function animateCursorOrb() {
+                orbX += (mouseX - orbX) * 0.1; // Kecepatan easing, semakin besar semakin cepat
+                orbY += (mouseY - orbY) * 0.1;
+                
+                if(cursorOrb) {
+                    cursorOrb.style.transform = `translate(${orbX}px, ${orbY}px)`;
+                }
+                
+                requestAnimationFrame(animateCursorOrb);
+            }
+            animateCursorOrb();
+
+            // Reaksi klik pada layar
+            window.addEventListener('click', (e) => {
+                if(cursorOrb) {
+                    // Hapus class pulse jika sudah ada untuk retrigger
+                    cursorOrb.classList.remove('click-pulse');
+                    // Sedikit delay agar DOM bisa me-render ulang
+                    void cursorOrb.offsetWidth; 
+                    cursorOrb.classList.add('click-pulse');
+                }
+            });
             
-            cursorOrb.style.transform = `translate(${orbX}px, ${orbY}px)`;
-            
-            requestAnimationFrame(animateCursorOrb);
-        }
-        animateCursorOrb();
+            // Reaksi pergeseran parallax saat scroll
+            const bgContainer = document.getElementById('bg-container');
+            window.addEventListener('scroll', () => {
+                let scrollOffset = window.scrollY * 0.15; // Kecepatan parallax
+                // Geser seluruh container background berlawanan dengan arah scroll
+                if(bgContainer) {
+                    bgContainer.style.transform = `translateY(${scrollOffset}px)`;
+                }
+            });
 
-        // Reaksi klik pada layar
-        window.addEventListener('click', (e) => {
-            // Hapus class pulse jika sudah ada untuk retrigger
-            cursorOrb.classList.remove('click-pulse');
-            // Sedikit delay agar DOM bisa me-render ulang
-            void cursorOrb.offsetWidth; 
-            cursorOrb.classList.add('click-pulse');
-        });
-        
-        // Reaksi pergeseran parallax saat scroll
-        const bgContainer = document.getElementById('bg-container');
-        window.addEventListener('scroll', () => {
-            let scrollOffset = window.scrollY * 0.15; // Kecepatan parallax
-            // Geser seluruh container background berlawanan dengan arah scroll
-            bgContainer.style.transform = `translateY(${scrollOffset}px)`;
-        });
+            // ----------------------------------------------------
+            // Mobile Header Scroll Logic
+            // ----------------------------------------------------
+            let lastScrollY = window.scrollY;
+            const header = document.getElementById('main-header');
 
-        // ----------------------------------------------------
-        // Mobile Header Scroll Logic
-        // ----------------------------------------------------
-        let lastScrollY = window.scrollY;
-        const header = document.getElementById('main-header');
-
-        window.addEventListener('scroll', () => {
-            if (window.innerWidth <= 768) {
-                if (window.scrollY > lastScrollY && window.scrollY > 80) {
-                    header.classList.add('header-hidden');
+            window.addEventListener('scroll', () => {
+                if (window.innerWidth <= 768) {
+                    if (window.scrollY > lastScrollY && window.scrollY > 80) {
+                        header.classList.add('header-hidden');
+                    } else {
+                        header.classList.remove('header-hidden');
+                    }
                 } else {
                     header.classList.remove('header-hidden');
                 }
-            } else {
-                header.classList.remove('header-hidden');
+                lastScrollY = window.scrollY;
+            });
+
+            // ----------------------------------------------------
+            // Carousel Slider Logic (3 Columns Scroll By)
+            // ----------------------------------------------------
+            const track = document.getElementById('projectTrack');
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+
+            if(nextBtn && track) {
+                nextBtn.addEventListener('click', () => {
+                    const slideWidth = document.querySelector('.carousel-slide').offsetWidth + 20; 
+                    track.scrollBy({ left: slideWidth, behavior: 'smooth' });
+                });
             }
-            lastScrollY = window.scrollY;
-        });
 
-        // ----------------------------------------------------
-        // Carousel Slider Logic (3 Columns Scroll By)
-        // ----------------------------------------------------
-        const track = document.getElementById('projectTrack');
-        const prevBtn = document.getElementById('prevBtn');
-        const nextBtn = document.getElementById('nextBtn');
-
-        nextBtn.addEventListener('click', () => {
-            const slideWidth = document.querySelector('.carousel-slide').offsetWidth + 20; 
-            track.scrollBy({ left: slideWidth, behavior: 'smooth' });
-        });
-
-        prevBtn.addEventListener('click', () => {
-            const slideWidth = document.querySelector('.carousel-slide').offsetWidth + 20;
-            track.scrollBy({ left: -slideWidth, behavior: 'smooth' });
+            if(prevBtn && track) {
+                prevBtn.addEventListener('click', () => {
+                    const slideWidth = document.querySelector('.carousel-slide').offsetWidth + 20;
+                    track.scrollBy({ left: -slideWidth, behavior: 'smooth' });
+                });
+            }
         });
     </script>
 </body>
