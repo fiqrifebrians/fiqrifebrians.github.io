@@ -13,16 +13,11 @@
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- Dynamic Soft Gradient Background (7 Orbs + Interaktif) -->
+    <!-- Dynamic Soft Gradient Background (2 Randomly Moving Orbs + Interaktif) -->
     <div id="bg-container">
-        <!-- Elemen statis/animasi melayang -->
-        <div class="bg-orb orb-1"></div>
-        <div class="bg-orb orb-2"></div>
-        <div class="bg-orb orb-3"></div>
-        <div class="bg-orb orb-4"></div>
-        <div class="bg-orb orb-5"></div>
-        <div class="bg-orb orb-6"></div>
-        <div class="bg-orb orb-7"></div>
+        <!-- Elemen animasi acak -->
+        <div class="bg-orb orb-1" id="orb1"></div>
+        <div class="bg-orb orb-2" id="orb2"></div>
         <!-- Kursor Interaktif -->
         <div id="cursor-orb"></div>
     </div>
@@ -287,27 +282,90 @@
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             // ----------------------------------------------------
+            // RANDOM MOVEMENT LOGIC (2 Orbs)
+            // ----------------------------------------------------
+            const orb1 = document.getElementById('orb1');
+            const orb2 = document.getElementById('orb2');
+
+            // Set posisi awal acak di dalam layar
+            let pos1 = { x: Math.random() * window.innerWidth, y: Math.random() * window.innerHeight };
+            let pos2 = { x: Math.random() * window.innerWidth, y: Math.random() * window.innerHeight };
+
+            // Set target awal acak
+            let target1 = { x: Math.random() * window.innerWidth, y: Math.random() * window.innerHeight };
+            let target2 = { x: Math.random() * window.innerWidth, y: Math.random() * window.innerHeight };
+
+            // Fungsi lerp (Linear Interpolation) untuk pergerakan halus organik
+            function lerp(start, end, factor) {
+                return start + (end - start) * factor;
+            }
+
+            function animateOrbs() {
+                // Easing factor yang sangat kecil untuk gerakan super lambat/halus
+                const easing = 0.002; 
+
+                // Bergerak perlahan ke target
+                pos1.x = lerp(pos1.x, target1.x, easing);
+                pos1.y = lerp(pos1.y, target1.y, easing);
+                pos2.x = lerp(pos2.x, target2.x, easing);
+                pos2.y = lerp(pos2.y, target2.y, easing);
+
+                // Perbarui posisi elemen
+                if(orb1 && orb2) {
+                    // Posisikan dari titik tengah orb (dengan translate tambahan -50% -50% untuk kompensasi)
+                    orb1.style.transform = `translate(calc(${pos1.x}px - 50%), calc(${pos1.y}px - 50%)) scale(1)`;
+                    orb2.style.transform = `translate(calc(${pos2.x}px - 50%), calc(${pos2.y}px - 50%)) scale(1.1)`;
+                }
+
+                // Jika sudah mendekati target, tentukan target acak baru dalam jangkauan layar
+                if (Math.abs(pos1.x - target1.x) < 50 && Math.abs(pos1.y - target1.y) < 50) {
+                    target1.x = Math.random() * window.innerWidth;
+                    target1.y = Math.random() * window.innerHeight;
+                }
+                if (Math.abs(pos2.x - target2.x) < 50 && Math.abs(pos2.y - target2.y) < 50) {
+                    target2.x = Math.random() * window.innerWidth;
+                    target2.y = Math.random() * window.innerHeight;
+                }
+
+                requestAnimationFrame(animateOrbs);
+            }
+            animateOrbs();
+
+            // ----------------------------------------------------
             // MOUSE FOLLOWER & CLICK PULSE LOGIC
             // ----------------------------------------------------
             const cursorOrb = document.getElementById('cursor-orb');
             let mouseX = window.innerWidth / 2;
             let mouseY = window.innerHeight / 2;
-            let orbX = mouseX;
-            let orbY = mouseY;
+            let cursorX = mouseX;
+            let cursorY = mouseY;
 
             // Mendeteksi pergerakan mouse
             window.addEventListener('mousemove', (e) => {
                 mouseX = e.clientX;
                 mouseY = e.clientY;
+                
+                // Efek tolak-menolak halus pada orb1 & orb2 saat mouse mendekat
+                const dist1 = Math.hypot(mouseX - pos1.x, mouseY - pos1.y);
+                const dist2 = Math.hypot(mouseX - pos2.x, mouseY - pos2.y);
+                
+                if(dist1 < 300) {
+                    target1.x -= (mouseX - pos1.x) * 0.1;
+                    target1.y -= (mouseY - pos1.y) * 0.1;
+                }
+                if(dist2 < 300) {
+                    target2.x -= (mouseX - pos2.x) * 0.1;
+                    target2.y -= (mouseY - pos2.y) * 0.1;
+                }
             });
 
-            // Animasi agar pergerakan orb halus (easing) mengikuti kursor
+            // Animasi agar pergerakan kursor halus (easing)
             function animateCursorOrb() {
-                orbX += (mouseX - orbX) * 0.1; // Kecepatan easing, semakin besar semakin cepat
-                orbY += (mouseY - orbY) * 0.1;
+                cursorX += (mouseX - cursorX) * 0.15; 
+                cursorY += (mouseY - cursorY) * 0.15;
                 
                 if(cursorOrb) {
-                    cursorOrb.style.transform = `translate(${orbX}px, ${orbY}px)`;
+                    cursorOrb.style.transform = `translate(calc(${cursorX}px - 50%), calc(${cursorY}px - 50%))`;
                 }
                 
                 requestAnimationFrame(animateCursorOrb);
@@ -317,9 +375,7 @@
             // Reaksi klik pada layar
             window.addEventListener('click', (e) => {
                 if(cursorOrb) {
-                    // Hapus class pulse jika sudah ada untuk retrigger
                     cursorOrb.classList.remove('click-pulse');
-                    // Sedikit delay agar DOM bisa me-render ulang
                     void cursorOrb.offsetWidth; 
                     cursorOrb.classList.add('click-pulse');
                 }

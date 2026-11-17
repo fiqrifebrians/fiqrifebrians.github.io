@@ -18,7 +18,7 @@ html, body {
 }
 
 /* ---------------------------------------------------- */
-/* DYNAMIC BACKGROUND (7 Orbs + Mouse Follower)         */
+/* NEW DYNAMIC BACKGROUND (2 Randomly Moving Orbs)      */
 /* ---------------------------------------------------- */
 #bg-container {
     position: fixed;
@@ -29,97 +29,36 @@ html, body {
     z-index: -1;
     overflow: hidden;
     pointer-events: none; 
-    background-color: #ffffff; /* Latar putih diletakkan di layer paling belakang */
+    background-color: #ffffff; /* Latar putih bersih */
 }
 
-/* Glowing Orbs (Bentuk abstrak gradien merah) */
+/* Glowing Orbs (Bentuk abstrak gradien) */
 .bg-orb {
     position: absolute;
     border-radius: 50%;
-    filter: blur(85px); 
-    opacity: 0.6;
-    animation: floatOrb ease-in-out infinite alternate;
+    filter: blur(100px); /* Blur diperbesar sedikit agar membaur lebih halus sebagai ambient */
+    opacity: 0.45; /* Opasitas diturunkan sedikit agar tidak menabrak konten */
     will-change: transform;
+    /* Animasi CSS lama dihapus, akan digerakkan dengan JS untuk Random Movement */
 }
 
-/* Orb 1: Merah Tajam, Besar, Kiri Atas */
+/* Orb 1: Merah Coral Cerah */
 .orb-1 {
-    width: 500px;
-    height: 500px;
-    background: rgba(220, 38, 38, 0.65); /* #DC2626 */
-    top: -100px;
-    left: -100px;
-    animation-duration: 7s;
+    width: 550px;
+    height: 550px;
+    background: #f87171; /* Warna merah cerah coral */
+    /* Posisi awal di-set tengah, pergerakan diatur JS */
+    top: 0;
+    left: 0;
 }
 
-/* Orb 2: Merah Terang, Sedang, Kanan Bawah */
+/* Orb 2: Merah Tua/Crimson */
 .orb-2 {
-    width: 400px;
-    height: 400px;
-    background: rgba(239, 68, 68, 0.6); /* #EF4444 */
-    bottom: -50px;
-    right: -50px;
-    animation-duration: 9s;
-    animation-direction: alternate-reverse;
-}
-
-/* Orb 3: Merah Gelap, Tengah Kiri */
-.orb-3 {
-    width: 350px;
-    height: 350px;
-    background: rgba(185, 28, 28, 0.55); /* #B91C1C */
-    top: 30%;
-    left: -150px;
-    animation-duration: 11s;
-}
-
-/* Orb 4: Merah Lembut, Tengah Kanan */
-.orb-4 {
-    width: 450px;
-    height: 450px;
-    background: rgba(248, 113, 113, 0.45);
-    top: 40%;
-    right: -100px;
-    animation-duration: 8s;
-    animation-direction: alternate-reverse;
-}
-
-/* Orb 5: Aksen Merah Tajam, Kecil, Bergerak Liar */
-.orb-5 {
-    width: 200px;
-    height: 200px;
-    background: rgba(220, 38, 38, 0.7);
-    top: 70%;
-    left: 40%;
-    animation-duration: 5s;
-}
-
-/* Orb 6: Merah Sedang, Kiri Bawah */
-.orb-6 {
-    width: 300px;
-    height: 300px;
-    background: rgba(239, 68, 68, 0.5);
-    bottom: -100px;
-    left: 20%;
-    animation-duration: 10s;
-}
-
-/* Orb 7: Merah Lembut, Atas Tengah */
-.orb-7 {
-    width: 380px;
-    height: 380px;
-    background: rgba(248, 113, 113, 0.5);
-    top: -150px;
-    left: 45%;
-    animation-duration: 12s;
-    animation-direction: alternate-reverse;
-}
-
-/* Pola pergerakan bawaan Orbs */
-@keyframes floatOrb {
-    0% { transform: translate(0, 0) scale(1); }
-    50% { transform: translate(25vw, -15vh) scale(1.15); }
-    100% { transform: translate(-20vw, 20vh) scale(0.9); }
+    width: 600px;
+    height: 600px;
+    background: #e11d48; /* Warna merah crimson elegan */
+    top: 0;
+    left: 0;
 }
 
 /* Interaktif: Gradien mengikuti kursor */
@@ -128,8 +67,8 @@ html, body {
     width: 350px;
     height: 350px;
     border-radius: 50%;
-    background: rgba(220, 38, 38, 0.7); 
-    filter: blur(90px);
+    background: rgba(220, 38, 38, 0.4); /* Merah lebih redup untuk kursor */
+    filter: blur(100px);
     pointer-events: none;
     top: 0;
     left: 0;
@@ -144,20 +83,18 @@ html, body {
 }
 
 @keyframes pulseOrb {
-    0% { transform: translate(-50%, -50%) scale(1); opacity: 0.7; }
-    50% { transform: translate(-50%, -50%) scale(1.5); opacity: 0.9; }
-    100% { transform: translate(-50%, -50%) scale(1); opacity: 0.7; }
+    0% { transform: translate(-50%, -50%) scale(1); opacity: 0.4; }
+    50% { transform: translate(-50%, -50%) scale(1.4); opacity: 0.6; }
+    100% { transform: translate(-50%, -50%) scale(1); opacity: 0.4; }
 }
 /* ---------------------------------------------------- */
 
-/* Pastikan semua section tembus pandang jika tidak ada card, 
-   tapi konten di atasnya memiliki z-index yang lebih tinggi */
 section {
     padding: 100px 0;
     position: relative;
     z-index: 5;
     background: transparent;
-    scroll-margin-top: 100px; /* Jarak aman dari header saat di-klik lewat navigasi */
+    scroll-margin-top: 100px; 
 }
 
 .container {
@@ -170,7 +107,9 @@ section {
 
 /* Kartu / Cards Style */
 .card {
-    background: #ffffff; /* Card harus solid putih agar teks di atas background tetap jelas terbaca */
+    background: rgba(255, 255, 255, 0.95); /* Sedikit semi-transparan untuk efek glass ringan tapi dominan solid putih */
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     border: 1px solid #f1f5f9;
     border-radius: 16px;
     padding: 40px;
@@ -288,7 +227,6 @@ nav {
 }
 
 .hero-content {
-    /* Shadow putih halus di belakang konten hero agar teks tetap sangat jelas jika tertimpa orb merah */
     text-shadow: 0 0 20px rgba(255,255,255,0.9), 0 0 40px rgba(255,255,255,1);
 }
 
@@ -470,7 +408,9 @@ nav {
 }
 
 .skill-badge {
-    background: #ffffff;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     border: 1px solid #e2e8f0;
     padding: 12px 24px;
     border-radius: 50px;
@@ -584,7 +524,9 @@ nav {
     width: 65px;
     height: 65px;
     border-radius: 50%;
-    background-color: #ffffff;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     border: 1px solid #f1f5f9;
     box-shadow: 0 6px 15px rgba(0, 0, 0, 0.05);
     transition: all 0.3s ease;
