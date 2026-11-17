@@ -36,18 +36,16 @@ html, body {
 .bg-orb {
     position: absolute;
     border-radius: 50%;
-    filter: blur(100px); /* Blur diperbesar sedikit agar membaur lebih halus sebagai ambient */
-    opacity: 0.45; /* Opasitas diturunkan sedikit agar tidak menabrak konten */
+    filter: blur(100px); 
+    opacity: 0.45; 
     will-change: transform;
-    /* Animasi CSS lama dihapus, akan digerakkan dengan JS untuk Random Movement */
 }
 
 /* Orb 1: Merah Coral Cerah */
 .orb-1 {
     width: 550px;
     height: 550px;
-    background: #f87171; /* Warna merah cerah coral */
-    /* Posisi awal di-set tengah, pergerakan diatur JS */
+    background: #f87171; 
     top: 0;
     left: 0;
 }
@@ -56,7 +54,7 @@ html, body {
 .orb-2 {
     width: 600px;
     height: 600px;
-    background: #e11d48; /* Warna merah crimson elegan */
+    background: #e11d48; 
     top: 0;
     left: 0;
 }
@@ -67,7 +65,7 @@ html, body {
     width: 350px;
     height: 350px;
     border-radius: 50%;
-    background: rgba(220, 38, 38, 0.4); /* Merah lebih redup untuk kursor */
+    background: rgba(220, 38, 38, 0.4); 
     filter: blur(100px);
     pointer-events: none;
     top: 0;
@@ -106,14 +104,17 @@ section {
 }
 
 /* Kartu / Cards Style */
+/* 2. Pertegas Batas Kartu/Block Konten */
 .card {
-    background: rgba(255, 255, 255, 0.95); /* Sedikit semi-transparan untuk efek glass ringan tapi dominan solid putih */
+    background: rgba(255, 255, 255, 0.95); 
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
-    border: 1px solid #f1f5f9;
+    /* Border dipertegas agar tidak nyaru dengan putih */
+    border: 1px solid rgba(15, 23, 42, 0.1); 
     border-radius: 16px;
     padding: 40px;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.04);
+    /* Box shadow diperkuat agar kartu lebih menonjol */
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08), 0 4px 6px rgba(0, 0, 0, 0.04);
     transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
     position: relative;
     z-index: 10;
@@ -121,7 +122,7 @@ section {
 
 .card:hover {
     border-color: #fca5a5;
-    box-shadow: 0 15px 35px rgba(220, 38, 38, 0.12);
+    box-shadow: 0 15px 40px rgba(220, 38, 38, 0.15), 0 6px 12px rgba(220, 38, 38, 0.08);
 }
 
 /* Typography & Headings */
@@ -130,11 +131,24 @@ h1, h2, h3, h4 {
     font-weight: 700;
 }
 
+/* 3. Tingkatkan Kontras Tulisan Nama Utama */
 .gradient-text {
-    background: linear-gradient(90deg, #dc2626, #f87171);
+    /* Mengubah warna nama menjadi lebih gelap dan tegas (Slate 900) dengan sedikit aksen gradient gelap ke Crimson */
+    background: linear-gradient(90deg, #0f172a, #475569);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     display: inline-block;
+    font-weight: 800; /* Dibuat lebih tebal */
+    text-shadow: 0px 1px 2px rgba(255, 255, 255, 0.8); /* Shadow putih tipis untuk pemisah dengan orb */
+}
+
+/* Efek hero khusus h1 agar tidak terpengaruh CSS global card/text lain */
+.hero-content h1.gradient-text {
+    background: #0f172a; /* Fallback solid dark */
+    color: #0f172a;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: #0f172a; /* Slate 900 */
+    text-shadow: 0px 2px 10px rgba(255, 255, 255, 0.9), 0px 4px 25px rgba(255, 255, 255, 1); /* Memastikan kontras luar biasa tajam saat background bergerak */
 }
 
 .section-header {
@@ -227,7 +241,7 @@ nav {
 }
 
 .hero-content {
-    text-shadow: 0 0 20px rgba(255,255,255,0.9), 0 0 40px rgba(255,255,255,1);
+    /* Shadow putih halus sudah dihandle di h1/h2 spesifik */
 }
 
 .profile-image-container {
@@ -259,6 +273,7 @@ nav {
     color: #64748b;
     margin-bottom: 25px;
     font-weight: 400;
+    text-shadow: 0 0 15px rgba(255,255,255,1);
 }
 
 .hero-content p {
@@ -266,6 +281,7 @@ nav {
     margin: 0 auto 40px auto;
     font-size: 1.1rem;
     color: #475569;
+    text-shadow: 0 0 15px rgba(255,255,255,1);
 }
 
 /* Primary Button (Hero) */
@@ -297,6 +313,7 @@ nav {
     display: flex;
     align-items: center;
     width: 100%;
+    padding: 0 20px; /* 1. Berikan ruang agar tombol tidak menabrak / terpotong pinggir layar */
 }
 
 .carousel-track {
@@ -369,32 +386,34 @@ nav {
     line-height: 1.5;
 }
 
-/* Carousel Buttons */
+/* 1. Perbaiki Tombol Navigasi Kiri pada Carousel Projects */
 .carousel-btn {
     background: #ffffff;
-    border: 1px solid #f1f5f9;
+    border: 1px solid rgba(15, 23, 42, 0.15); /* Border tegas */
     color: #dc2626;
     font-size: 1.2rem;
     cursor: pointer;
     border-radius: 50%;
-    width: 45px;
-    height: 45px;
+    width: 50px;
+    height: 50px;
     display: flex;
     align-items: center;
     justify-content: center;
     position: absolute;
-    z-index: 10;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    z-index: 100; /* Naikkan z-index agar selalu di atas kartu */
+    box-shadow: 0 6px 15px rgba(0,0,0,0.1), 0 2px 4px rgba(0,0,0,0.06); /* Box shadow diperkuat */
     transition: all 0.3s ease;
 }
 
 .carousel-btn:hover {
     background: #dc2626;
     color: #ffffff;
+    border-color: #dc2626;
+    box-shadow: 0 8px 20px rgba(220, 38, 38, 0.25);
 }
 
-.prev-btn { left: -15px; }
-.next-btn { right: -15px; }
+.prev-btn { left: -5px; } /* Geser keluar agar tidak terpotong tepi kartu */
+.next-btn { right: -5px; }
 
 /* Skills Section */
 .skills-container {
@@ -411,13 +430,13 @@ nav {
     background: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
-    border: 1px solid #e2e8f0;
+    border: 1px solid rgba(15, 23, 42, 0.15); /* Border tegas */
     padding: 12px 24px;
     border-radius: 50px;
     font-size: 0.95rem;
     font-weight: 600;
     color: #475569;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.02);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.05); /* Bayangan sedikit diperkuat */
     transition: all 0.3s ease;
     cursor: default;
 }
@@ -527,8 +546,8 @@ nav {
     background: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
-    border: 1px solid #f1f5f9;
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(15, 23, 42, 0.1);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08); /* Bayangan sedikit diperkuat */
     transition: all 0.3s ease;
 }
 
@@ -615,8 +634,13 @@ footer {
     .carousel-slide {
         flex: 0 0 100%;
     }
-    .prev-btn { left: -5px; }
-    .next-btn { right: -5px; }
+    
+    /* Perbaiki posisi tombol di mobile */
+    .carousel-wrapper {
+        padding: 0 10px;
+    }
+    .prev-btn { left: 0px; }
+    .next-btn { right: 0px; }
 
     .career-card {
         flex-direction: column;
