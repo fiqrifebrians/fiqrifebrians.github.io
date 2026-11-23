@@ -382,34 +382,34 @@
     margin-top: 2px;
 }
 
-/* ---------------- PANEL 4: 15-ITEM SKILLS GRID ---------------- */
-.skill-tile {
+/* ---------------- PANEL 4: SKILLS (13) & LANGUAGES (2) ---------------- */
+.skill-tile,
+.language-tile {
     background: var(--color-bg-elevated);
     border: 1px solid var(--color-border);
     border-radius: var(--radius-md);
-    padding: 20px 14px;
+    padding: 13px 14px;
     display: flex;
-    flex-direction: column;
     align-items: center;
-    justify-content: center;
-    text-align: center;
     gap: 12px;
     transition: border-color var(--transition-fast), box-shadow var(--transition-fast), transform var(--transition-fast);
 }
 
-.skill-tile:hover {
+.skill-tile:hover,
+.language-tile:hover {
     border-color: var(--color-accent);
     box-shadow: var(--shadow-hover);
     transform: translateY(-2px);
 }
 
 .skill-tile-icon {
-    width: 44px;
-    height: 44px;
+    flex: 0 0 36px;
+    width: 36px;
+    height: 36px;
     border-radius: var(--radius-sm);
     background: var(--color-bg-surface);
     border: 1px solid var(--color-border);
-    padding: 7px;
+    padding: 6px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -421,11 +421,13 @@
     object-fit: contain;
 }
 
-.skill-tile-name {
-    font-size: 0.85rem;
+.skill-tile-name,
+.language-tile-name {
+    font-size: 0.84rem;
     font-weight: 600;
     color: var(--color-text-primary);
     line-height: 1.3;
+    word-break: break-word;
 }
 
 /* ---------------- PANEL 5: 5 PROJECTS + 3 RELATED SKILLS ---------------- */

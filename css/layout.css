@@ -105,17 +105,19 @@
     background: var(--color-text-primary);
 }
 
-/* Horizontal Viewport Track */
+/* Horizontal Viewport Track (Desktop & Mobile) */
 .horizontal-viewport {
     position: relative;
     width: 100vw;
     height: 100vh;
+    height: 100dvh;
     display: flex;
     flex-direction: row;
     overflow-x: auto;
     overflow-y: hidden;
     scroll-snap-type: x mandatory;
     scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
     -ms-overflow-style: none;
 }
@@ -131,20 +133,22 @@
     user-select: none;
 }
 
-/* Full-Viewport Panels (Sized for 1366x768 and 1440x900) */
+/* Full-Viewport Panel with Safe Internal Vertical Scroll */
 .panel {
     flex: 0 0 100vw;
     width: 100vw;
     height: 100vh;
+    height: 100dvh;
     scroll-snap-align: start;
     scroll-snap-stop: always;
     position: relative;
     display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: calc(var(--navbar-height) + 28px) 60px 60px;
+    flex-direction: column;
+    padding: calc(var(--navbar-height) + 28px) 60px 64px;
     overflow-y: auto;
     overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-y: contain;
     background-color: var(--color-bg-primary);
 }
 
@@ -156,6 +160,7 @@
     width: 100%;
     max-width: var(--panel-max-width);
     margin: auto;
+    flex-shrink: 0;
 }
 
 /* Editorial Section Header */
@@ -164,7 +169,7 @@
     align-items: flex-end;
     justify-content: space-between;
     gap: 24px;
-    padding-bottom: 16px;
+    padding-bottom: 14px;
     margin-bottom: 22px;
     border-bottom: 1px solid var(--color-border);
 }
@@ -181,14 +186,6 @@
 .section-title {
     font-size: clamp(2rem, 3vw, 2.75rem);
     color: var(--color-text-primary);
-}
-
-.section-subtitle {
-    max-width: 380px;
-    font-size: 0.86rem;
-    color: var(--color-text-muted);
-    text-align: right;
-    line-height: 1.5;
 }
 
 /* Structural Grids */
@@ -220,10 +217,26 @@
     align-items: start;
 }
 
-.skills-grid-15 {
+/* Skills (13) & Languages (2) Separated Grids */
+.skills-section-group {
+    margin-bottom: 24px;
+}
+
+.skills-grid-13 {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
-    gap: 14px;
+    gap: 12px;
+}
+
+.languages-section-group {
+    padding-top: 20px;
+    border-top: 1px solid var(--color-border);
+}
+
+.languages-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 260px));
+    gap: 12px;
 }
 
 .projects-grid {
@@ -273,13 +286,39 @@
     z-index: var(--z-controls);
     display: flex;
     align-items: center;
-    gap: 16px;
+    gap: 14px;
     background: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     border: 1px solid var(--color-border);
     border-radius: var(--radius-md);
-    padding: 6px 16px;
+    padding: 6px 14px;
+    box-shadow: var(--shadow-subtle);
+}
+
+.indicator-arrow {
+    display: none;
+    width: 28px;
+    height: 28px;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--color-border);
+    background: var(--color-bg-surface);
+    color: var(--color-text-primary);
+    align-items: center;
+    justify-content: center;
+    transition: all var(--transition-fast);
+}
+
+.indicator-arrow:active:not(:disabled),
+.indicator-arrow:hover:not(:disabled) {
+    background: var(--color-accent);
+    border-color: var(--color-accent);
+    color: var(--color-text-inverse);
+}
+
+.indicator-arrow:disabled {
+    opacity: 0.28;
+    cursor: not-allowed;
 }
 
 .panel-dots {
@@ -301,7 +340,7 @@
 }
 
 .panel-dot.active {
-    width: 28px;
+    width: 26px;
     background: var(--color-accent);
 }
 

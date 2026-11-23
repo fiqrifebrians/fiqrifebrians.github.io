@@ -1,24 +1,23 @@
 /* ============================================================
-   Horizontal Viewport Navigation Controller
-   Supports: Wheel, Keyboard, Arrows, Drag/Swipe, Navbar & Dots
+   Horizontal Viewport Navigation Controller (Desktop & Mobile)
+   Supports: Touch Swipe, Mouse Wheel, Keyboard, Arrows, Drag, Navbar & Dots
    ============================================================ */
 
 window.PortfolioApp = window.PortfolioApp || {};
 
 window.PortfolioApp.HorizontalScroll = (function () {
-    const MOBILE_BREAKPOINT = 960;
     let viewport = null;
     let panels = [];
     let navLinks = [];
     let dots = [];
-    let prevBtn = null;
-    let nextBtn = null;
+    let prevBtns = [];
+    let nextBtns = [];
     let counterEl = null;
     let currentIndex = 0;
     let wheelLock = false;
 
-    function isDesktopMode() {
-        return window.innerWidth > MOBILE_BREAKPOINT;
+    function getPanelWidth() {
+        return viewport ? viewport.clientWidth : window.innerWidth;
     }
 
     function updateActiveUI(index) {
@@ -37,8 +36,13 @@ window.PortfolioApp.HorizontalScroll = (function () {
             dot.setAttribute('aria-current', i === currentIndex ? 'true' : 'false');
         });
 
-        if (prevBtn) prevBtn.disabled = currentIndex === 0;
-        if (nextBtn) nextBtn.disabled = currentIndex === panels.length - 1;
+        prevBtns.forEach((btn) => {
+            btn.disabled = currentIndex === 0;
+        });
+
+        nextBtns.forEach((btn) => {
+            btn.disabled = currentIndex === panels.length - 1;
+        });
 
         if (counterEl) {
             const currentStr = String(currentIndex + 1).padStart(2, '0');
@@ -49,19 +53,13 @@ window.PortfolioApp.HorizontalScroll = (function () {
 
     function goToPanel(index) {
         const targetIndex = Math.max(0, Math.min(index, panels.length - 1));
-        const targetPanel = panels[targetIndex];
-        if (!targetPanel) return;
+        if (!viewport || !panels[targetIndex]) return;
 
-        if (isDesktopMode()) {
-            viewport.scrollTo({
-                left: targetIndex * window.innerWidth,
-                behavior: 'smooth'
-            });
-            updateActiveUI(targetIndex);
-        } else {
-            targetPanel.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            updateActiveUI(targetIndex);
-        }
+        viewport.scrollTo({
+            left: targetIndex * getPanelWidth(),
+            behavior: 'smooth'
+        });
+        updateActiveUI(targetIndex);
     }
 
     function goToPanelById(id) {
@@ -72,14 +70,12 @@ window.PortfolioApp.HorizontalScroll = (function () {
     }
 
     function handleWheel(e) {
-        if (!isDesktopMode()) return;
-
         const modal = document.getElementById('projectModal');
         if (modal && modal.classList.contains('is-open')) return;
 
-        // Allow internal scrolling inside embedded map or tall panels
         if (e.target.closest('.map-iframe')) return;
 
+        // Allow internal vertical scroll inside a panel when its content overflows vertically
         const activePanel = panels[currentIndex];
         if (activePanel) {
             const canScrollDown = activePanel.scrollTop + activePanel.clientHeight < activePanel.scrollHeight - 2;
@@ -108,8 +104,6 @@ window.PortfolioApp.HorizontalScroll = (function () {
     }
 
     function handleKeydown(e) {
-        if (!isDesktopMode()) return;
-
         const modal = document.getElementById('projectModal');
         if (modal && modal.classList.contains('is-open')) return;
 
@@ -134,7 +128,6 @@ window.PortfolioApp.HorizontalScroll = (function () {
         let startScrollLeft = 0;
 
         viewport.addEventListener('mousedown', (e) => {
-            if (!isDesktopMode()) return;
             if (e.target.closest('a, button, input, iframe, .modal-dialog')) return;
             isDown = true;
             startX = e.pageX;
@@ -146,7 +139,7 @@ window.PortfolioApp.HorizontalScroll = (function () {
             if (!isDown) return;
             isDown = false;
             viewport.classList.remove('is-dragging');
-            const nearest = Math.round(viewport.scrollLeft / window.innerWidth);
+            const nearest = Math.round(viewport.scrollLeft / getPanelWidth());
             goToPanel(nearest);
         });
 
@@ -161,26 +154,15 @@ window.PortfolioApp.HorizontalScroll = (function () {
     function setupScrollSync() {
         let scrollTimeout = null;
         viewport.addEventListener('scroll', () => {
-            if (!isDesktopMode()) return;
             clearTimeout(scrollTimeout);
             scrollTimeout = setTimeout(() => {
-                const idx = Math.round(viewport.scrollLeft / window.innerWidth);
+                const width = getPanelWidth();
+                if (!width) return;
+                const idx = Math.round(viewport.scrollLeft / width);
                 if (idx !== currentIndex) {
                     updateActiveUI(idx);
                 }
-            }, 60);
-        });
-
-        window.addEventListener('scroll', () => {
-            if (isDesktopMode()) return;
-            const scrollMid = window.scrollY + window.innerHeight * 0.35;
-            panels.forEach((panel, i) => {
-                const top = panel.offsetTop;
-                const bottom = top + panel.offsetHeight;
-                if (scrollMid >= top && scrollMid < bottom && i !== currentIndex) {
-                    updateActiveUI(i);
-                }
-            });
+            }, 50);
         }, { passive: true });
     }
 
@@ -191,8 +173,14 @@ window.PortfolioApp.HorizontalScroll = (function () {
         panels = Array.from(viewport.querySelectorAll('.panel'));
         navLinks = Array.from(document.querySelectorAll('.nav-link[data-panel]'));
         dots = Array.from(document.querySelectorAll('.panel-dot[data-panel]'));
-        prevBtn = document.getElementById('prevPanelBtn');
-        nextBtn = document.getElementById('nextPanelBtn');
+        prevBtns = [
+            document.getElementById('prevPanelBtn'),
+            document.getElementById('mobilePrevBtn')
+        ].filter(Boolean);
+        nextBtns = [
+            document.getElementById('nextPanelBtn'),
+            document.getElementById('mobileNextBtn')
+        ].filter(Boolean);
         counterEl = document.getElementById('panelCounter');
 
         document.querySelectorAll('[data-panel]').forEach((trigger) => {
@@ -202,19 +190,27 @@ window.PortfolioApp.HorizontalScroll = (function () {
                 goToPanelById(targetId);
 
                 const menu = document.getElementById('navMenu');
+                const toggleBtn = document.getElementById('navToggle');
                 if (menu) menu.classList.remove('is-open');
+                if (toggleBtn) toggleBtn.setAttribute('aria-expanded', 'false');
             });
         });
 
-        if (prevBtn) prevBtn.addEventListener('click', () => goToPanel(currentIndex - 1));
-        if (nextBtn) nextBtn.addEventListener('click', () => goToPanel(currentIndex + 1));
+        prevBtns.forEach((btn) => {
+            btn.addEventListener('click', () => goToPanel(currentIndex - 1));
+        });
+
+        nextBtns.forEach((btn) => {
+            btn.addEventListener('click', () => goToPanel(currentIndex + 1));
+        });
 
         window.addEventListener('wheel', handleWheel, { passive: false });
         window.addEventListener('keydown', handleKeydown);
         window.addEventListener('resize', () => {
-            if (isDesktopMode()) {
-                viewport.scrollTo({ left: currentIndex * window.innerWidth, behavior: 'auto' });
-            }
+            viewport.scrollTo({
+                left: currentIndex * getPanelWidth(),
+                behavior: 'auto'
+            });
         });
 
         setupDragSwipe();
