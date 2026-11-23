@@ -1,5 +1,5 @@
 /* ============================================================
-   Responsive Breakpoints — Horizontal Layout on Desktop & Mobile
+   Responsive Breakpoints — Horizontal Layout & Mobile-Only Polish
    ============================================================ */
 
 @media (max-width: 1240px) {
@@ -16,8 +16,11 @@
     }
 }
 
-/* Tablet & Mobile: Maintain Strict Horizontal 100vw x 100dvh Panels */
+/* ============================================================
+   MOBILE & TABLET ONLY (<= 960px) — Desktop Untouched
+   ============================================================ */
 @media (max-width: 960px) {
+    /* Navbar */
     .navbar {
         top: 10px;
         width: calc(100vw - 20px);
@@ -33,24 +36,28 @@
         display: none;
     }
 
+    /* 2. Compact, Proportional Mobile Dropdown Menu */
     .nav-menu {
         position: fixed;
-        top: 72px;
-        left: 10px;
+        top: 70px;
+        left: auto;
         right: 10px;
+        width: max-content;
+        min-width: 164px;
+        max-width: calc(100vw - 20px);
         background: rgba(255, 255, 255, 0.98);
         backdrop-filter: blur(12px);
         -webkit-backdrop-filter: blur(12px);
         border: 1px solid var(--color-border);
         border-radius: var(--radius-md);
         box-shadow: var(--shadow-hover);
-        padding: 10px;
+        padding: 6px;
         flex-direction: column;
         align-items: stretch;
-        gap: 4px;
+        gap: 2px;
         opacity: 0;
         pointer-events: none;
-        transform: translateY(-8px);
+        transform: translateY(-6px);
         transition: opacity var(--transition-fast), transform var(--transition-fast);
         z-index: calc(var(--z-navbar) + 10);
     }
@@ -62,20 +69,27 @@
     }
 
     .nav-link {
-        text-align: center;
-        padding: 10px 14px;
-        font-size: 0.88rem;
+        display: block;
+        text-align: left;
+        padding: 8px 16px;
+        font-size: 0.86rem;
+        white-space: nowrap;
     }
 
     /* Keep horizontal viewport & full-screen panels with internal scroll */
+    .horizontal-viewport.is-project-swiping {
+        overflow-x: hidden !important;
+        scroll-snap-type: none !important;
+    }
+
     .panel {
-        padding: 76px 18px 74px;
+        padding: 74px 16px 28px;
         justify-content: flex-start;
     }
 
     .panel-inner {
         margin: 0 auto;
-        padding-bottom: 20px;
+        padding-bottom: 16px;
     }
 
     #hero .panel-inner,
@@ -83,35 +97,31 @@
         margin: auto;
     }
 
-    /* Hide side desktop arrows; enable compact arrows in bottom bar */
+    /* 1. Hide Slide Bar / Slide Counter / Arrows on Mobile */
     .viewport-arrow,
+    .panel-indicator-bar,
     .panel-hint {
-        display: none;
+        display: none !important;
     }
 
-    .panel-indicator-bar {
-        bottom: 10px;
-        gap: 10px;
-        padding: 5px 10px;
-        max-width: calc(100vw - 20px);
+    /* 5. Swap "Contact Me" -> "About Me" on Mobile Hero */
+    .hero-btn-desktop-only {
+        display: none !important;
     }
 
-    .indicator-arrow {
+    .hero-btn-mobile-only {
         display: inline-flex;
     }
 
-    .panel-dot {
-        width: 10px;
-    }
-
-    .panel-dot.active {
-        width: 20px;
+    /* 6. Hide "Back to Start" on Mobile Contact */
+    .back-to-start-btn {
+        display: none !important;
     }
 
     /* Hero Mobile Proportions */
     .hero-grid {
         grid-template-columns: 1fr;
-        gap: 24px;
+        gap: 22px;
         text-align: center;
     }
 
@@ -128,7 +138,7 @@
     }
 
     .hero-photo-frame {
-        width: min(210px, 56vw);
+        width: min(210px, 54vw);
         padding: 8px;
     }
 
@@ -186,6 +196,66 @@
         gap: 12px;
     }
 
+    /* 3. Compact 2-Column Experience (Career & Education) on Mobile */
+    #experience .two-col-grid {
+        gap: 18px;
+    }
+
+    #experience .column-label {
+        margin-bottom: 10px;
+        font-size: 0.76rem;
+    }
+
+    #experience .timeline-stack {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
+    }
+
+    #experience .timeline-card {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+        padding: 12px;
+        height: 100%;
+    }
+
+    #experience .timeline-logo {
+        flex: 0 0 auto;
+        width: 100%;
+        height: 44px;
+        padding: 5px 8px;
+    }
+
+    #experience .timeline-content {
+        width: 100%;
+    }
+
+    #experience .timeline-top {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 5px;
+        margin-bottom: 4px;
+    }
+
+    #experience .timeline-role {
+        font-size: 0.8rem;
+        line-height: 1.28;
+    }
+
+    #experience .timeline-date {
+        font-size: 0.65rem;
+        padding: 2px 6px;
+    }
+
+    #experience .timeline-org {
+        font-size: 0.76rem;
+    }
+
+    #experience .timeline-location {
+        font-size: 0.7rem;
+    }
+
     /* Skills & Languages */
     .skills-section-group {
         margin-bottom: 18px;
@@ -205,43 +275,53 @@
         gap: 10px;
     }
 
-    /* Projects */
-    .projects-grid {
-        grid-template-columns: repeat(2, 1fr);
+    /* 4. Independent Horizontal Project Carousel on Mobile (Main Panel Stays Static) */
+    #projects .projects-grid {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
         gap: 12px;
+        overflow-x: auto;
+        overflow-y: hidden;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+        overscroll-behavior-x: contain;
+        touch-action: pan-x pan-y;
+        padding: 2px 2px 12px;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+    }
+
+    #projects .projects-grid::-webkit-scrollbar {
+        display: none;
+    }
+
+    #projects .project-card {
+        flex: 0 0 46%;
+        min-width: 250px;
+        max-width: 310px;
+        scroll-snap-align: start;
+    }
+
+    /* Contact Footer Centered Without Back-to-Start Button */
+    .panel-footer {
+        justify-content: center;
+        text-align: center;
     }
 }
 
 @media (max-width: 640px) {
     .panel {
-        padding: 74px 14px 72px;
+        padding: 72px 14px 24px;
     }
 
     .card {
-        padding: 16px;
+        padding: 15px;
     }
 
     .about-meta-grid {
         grid-template-columns: 1fr;
         gap: 10px;
-    }
-
-    .timeline-card {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 12px;
-        padding: 14px;
-    }
-
-    .timeline-logo {
-        flex: 0 0 auto;
-        width: 110px;
-        height: 58px;
-    }
-
-    .timeline-top {
-        flex-direction: column;
-        gap: 6px;
     }
 
     .skills-grid-13 {
@@ -267,7 +347,14 @@
         font-size: 0.78rem;
     }
 
-    .projects-grid,
+    /* Mobile Project Carousel Card Sizing */
+    #projects .project-card {
+        flex: 0 0 82%;
+        min-width: 240px;
+        max-width: 295px;
+        scroll-snap-align: center;
+    }
+
     .contact-cards-row,
     .modal-top-grid,
     .modal-details-grid {
@@ -280,7 +367,8 @@
 
     .panel-footer {
         flex-direction: column;
-        gap: 10px;
+        gap: 8px;
+        justify-content: center;
         text-align: center;
     }
 

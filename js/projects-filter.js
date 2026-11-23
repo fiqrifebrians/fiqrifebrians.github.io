@@ -118,6 +118,11 @@ window.PortfolioApp.ProjectsFilter = (function () {
                     const visible = filter === 'all' || cat === filter;
                     card.classList.toggle('is-hidden', !visible);
                 });
+
+                const grid = document.querySelector('#projects .projects-grid');
+                if (grid) {
+                    grid.scrollTo({ left: 0, behavior: 'smooth' });
+                }
             });
         });
     }

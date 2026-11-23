@@ -93,6 +93,11 @@
     margin-bottom: 24px;
 }
 
+.hero-btn-mobile-only {
+    display: none;
+}
+
+
 .hero-quick-links {
     display: flex;
     align-items: center;

@@ -1,11 +1,13 @@
 /* ============================================================
    Horizontal Viewport Navigation Controller (Desktop & Mobile)
    Supports: Touch Swipe, Mouse Wheel, Keyboard, Arrows, Drag, Navbar & Dots
+   Includes: Isolated Mobile Horizontal Carousel for #projects
    ============================================================ */
 
 window.PortfolioApp = window.PortfolioApp || {};
 
 window.PortfolioApp.HorizontalScroll = (function () {
+    const MOBILE_BREAKPOINT = 960;
     let viewport = null;
     let panels = [];
     let navLinks = [];
@@ -15,6 +17,10 @@ window.PortfolioApp.HorizontalScroll = (function () {
     let counterEl = null;
     let currentIndex = 0;
     let wheelLock = false;
+
+    function isMobileViewport() {
+        return window.innerWidth <= MOBILE_BREAKPOINT;
+    }
 
     function getPanelWidth() {
         return viewport ? viewport.clientWidth : window.innerWidth;
@@ -55,6 +61,7 @@ window.PortfolioApp.HorizontalScroll = (function () {
         const targetIndex = Math.max(0, Math.min(index, panels.length - 1));
         if (!viewport || !panels[targetIndex]) return;
 
+        viewport.classList.remove('is-project-swiping');
         viewport.scrollTo({
             left: targetIndex * getPanelWidth(),
             behavior: 'smooth'
@@ -74,6 +81,11 @@ window.PortfolioApp.HorizontalScroll = (function () {
         if (modal && modal.classList.contains('is-open')) return;
 
         if (e.target.closest('.map-iframe')) return;
+
+        // Keep main panel static when scrolling inside mobile projects horizontal track
+        if (isMobileViewport() && e.target.closest('#projects .projects-grid')) {
+            return;
+        }
 
         // Allow internal vertical scroll inside a panel when its content overflows vertically
         const activePanel = panels[currentIndex];
@@ -129,6 +141,7 @@ window.PortfolioApp.HorizontalScroll = (function () {
 
         viewport.addEventListener('mousedown', (e) => {
             if (e.target.closest('a, button, input, iframe, .modal-dialog')) return;
+            if (isMobileViewport() && e.target.closest('#projects .projects-grid')) return;
             isDown = true;
             startX = e.pageX;
             startScrollLeft = viewport.scrollLeft;
@@ -151,9 +164,58 @@ window.PortfolioApp.HorizontalScroll = (function () {
         });
     }
 
+    function setupMobileProjectsIsolation() {
+        const projectsTrack = document.querySelector('#projects .projects-grid');
+        if (!projectsTrack) return;
+
+        let lockedScrollLeft = 0;
+        let unlockTimer = null;
+
+        function lockMainViewport() {
+            if (!isMobileViewport()) return;
+            clearTimeout(unlockTimer);
+            lockedScrollLeft = currentIndex * getPanelWidth();
+            viewport.classList.add('is-project-swiping');
+            viewport.scrollLeft = lockedScrollLeft;
+        }
+
+        function unlockMainViewport() {
+            clearTimeout(unlockTimer);
+            unlockTimer = setTimeout(() => {
+                viewport.classList.remove('is-project-swiping');
+                viewport.scrollTo({
+                    left: currentIndex * getPanelWidth(),
+                    behavior: 'auto'
+                });
+            }, 120);
+        }
+
+        projectsTrack.addEventListener('touchstart', (e) => {
+            if (!isMobileViewport()) return;
+            e.stopPropagation();
+            lockMainViewport();
+        }, { passive: true });
+
+        projectsTrack.addEventListener('touchmove', (e) => {
+            if (!isMobileViewport()) return;
+            e.stopPropagation();
+        }, { passive: true });
+
+        projectsTrack.addEventListener('touchend', () => {
+            if (!isMobileViewport()) return;
+            unlockMainViewport();
+        }, { passive: true });
+
+        projectsTrack.addEventListener('touchcancel', () => {
+            if (!isMobileViewport()) return;
+            unlockMainViewport();
+        }, { passive: true });
+    }
+
     function setupScrollSync() {
         let scrollTimeout = null;
         viewport.addEventListener('scroll', () => {
+            if (viewport.classList.contains('is-project-swiping')) return;
             clearTimeout(scrollTimeout);
             scrollTimeout = setTimeout(() => {
                 const width = getPanelWidth();
@@ -207,6 +269,7 @@ window.PortfolioApp.HorizontalScroll = (function () {
         window.addEventListener('wheel', handleWheel, { passive: false });
         window.addEventListener('keydown', handleKeydown);
         window.addEventListener('resize', () => {
+            viewport.classList.remove('is-project-swiping');
             viewport.scrollTo({
                 left: currentIndex * getPanelWidth(),
                 behavior: 'auto'
@@ -214,6 +277,7 @@ window.PortfolioApp.HorizontalScroll = (function () {
         });
 
         setupDragSwipe();
+        setupMobileProjectsIsolation();
         setupScrollSync();
         updateActiveUI(0);
     }
