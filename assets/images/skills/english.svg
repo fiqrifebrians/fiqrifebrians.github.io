@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <clipPath id="ukClip"><rect x="4" y="12" width="56" height="40" rx="5"/></clipPath>
+  <g clip-path="url(#ukClip)">
+    <rect x="4" y="12" width="56" height="40" fill="#012169"/>
+    <path d="M4 12l56 40M60 12L4 52" stroke="#FFFFFF" stroke-width="7"/>
+    <path d="M4 12l56 40M60 12L4 52" stroke="#C8102E" stroke-width="3"/>
+    <path d="M32 12v40M4 32h56" stroke="#FFFFFF" stroke-width="10"/>
+    <path d="M32 12v40M4 32h56" stroke="#C8102E" stroke-width="6"/>
+  </g>
+  <rect x="4" y="12" width="56" height="40" rx="5" stroke="#D1D5DB" stroke-width="1.5"/>
+</svg>
