@@ -61,8 +61,7 @@ window.PortfolioApp.HorizontalScroll = (function () {
         const targetIndex = Math.max(0, Math.min(index, panels.length - 1));
         if (!viewport || !panels[targetIndex]) return;
 
-        viewport.classList.remove('is-project-swiping');
-        viewport.scrollTo({
+                viewport.scrollTo({
             left: targetIndex * getPanelWidth(),
             behavior: 'smooth'
         });
@@ -168,55 +167,20 @@ window.PortfolioApp.HorizontalScroll = (function () {
         const projectsTrack = document.querySelector('#projects .projects-grid');
         if (!projectsTrack) return;
 
-        let lockedScrollLeft = 0;
-        let unlockTimer = null;
-
-        function lockMainViewport() {
-            if (!isMobileViewport()) return;
-            clearTimeout(unlockTimer);
-            lockedScrollLeft = currentIndex * getPanelWidth();
-            viewport.classList.add('is-project-swiping');
-            viewport.scrollLeft = lockedScrollLeft;
-        }
-
-        function unlockMainViewport() {
-            clearTimeout(unlockTimer);
-            unlockTimer = setTimeout(() => {
-                viewport.classList.remove('is-project-swiping');
-                viewport.scrollTo({
-                    left: currentIndex * getPanelWidth(),
-                    behavior: 'auto'
-                });
-            }, 120);
-        }
-
+        // Isolate touch events inside mobile projects track without blocking native horizontal scroll
         projectsTrack.addEventListener('touchstart', (e) => {
-            if (!isMobileViewport()) return;
-            e.stopPropagation();
-            lockMainViewport();
+            if (isMobileViewport()) e.stopPropagation();
         }, { passive: true });
 
         projectsTrack.addEventListener('touchmove', (e) => {
-            if (!isMobileViewport()) return;
-            e.stopPropagation();
-        }, { passive: true });
-
-        projectsTrack.addEventListener('touchend', () => {
-            if (!isMobileViewport()) return;
-            unlockMainViewport();
-        }, { passive: true });
-
-        projectsTrack.addEventListener('touchcancel', () => {
-            if (!isMobileViewport()) return;
-            unlockMainViewport();
+            if (isMobileViewport()) e.stopPropagation();
         }, { passive: true });
     }
 
     function setupScrollSync() {
         let scrollTimeout = null;
         viewport.addEventListener('scroll', () => {
-            if (viewport.classList.contains('is-project-swiping')) return;
-            clearTimeout(scrollTimeout);
+                        clearTimeout(scrollTimeout);
             scrollTimeout = setTimeout(() => {
                 const width = getPanelWidth();
                 if (!width) return;
@@ -269,8 +233,7 @@ window.PortfolioApp.HorizontalScroll = (function () {
         window.addEventListener('wheel', handleWheel, { passive: false });
         window.addEventListener('keydown', handleKeydown);
         window.addEventListener('resize', () => {
-            viewport.classList.remove('is-project-swiping');
-            viewport.scrollTo({
+                        viewport.scrollTo({
                 left: currentIndex * getPanelWidth(),
                 behavior: 'auto'
             });

@@ -19,9 +19,9 @@ window.PortfolioApp.ProjectsFilter = (function () {
             ],
             approach: 'Built using modular HTML, CSS, and Vanilla JavaScript with a clean white-and-orange UI architecture, host-agnostic page routing, and device-local state persistence to validate end-to-end marketplace workflows.',
             skills: [
-                { name: 'Web Development', icon: 'assets/images/skills/web-development.svg' },
-                { name: 'UI/UX Design', icon: 'assets/images/skills/ui-ux-design.svg' },
-                { name: 'Business Development', icon: 'assets/images/skills/business-development.svg' }
+                { name: 'Web Development', icon: 'assets/images/skills/webdev.png' },
+                { name: 'UI/UX Design', icon: 'assets/images/skills/ux.png' },
+                { name: 'Business Development', icon: 'assets/images/skills/businessdev.png' }
             ],
             url: 'https://fiqrifebrians.github.io/Animedic/',
             ctaLabel: 'Open Live Project'
@@ -38,9 +38,9 @@ window.PortfolioApp.ProjectsFilter = (function () {
             ],
             approach: 'Developed with pure HTML, CSS, and JavaScript using modular stylesheets and lightweight DOM manipulation to ensure instant load times and zero external framework overhead on GitHub Pages.',
             skills: [
-                { name: 'Web Development', icon: 'assets/images/skills/web-development.svg' },
+                { name: 'Web Development', icon: 'assets/images/skills/webdev.png' },
                 { name: 'JavaScript', icon: 'assets/images/skills/javascript.svg' },
-                { name: 'UI/UX Design', icon: 'assets/images/skills/ui-ux-design.svg' }
+                { name: 'UI/UX Design', icon: 'assets/images/skills/ux.png' }
             ],
             url: 'https://fiqrifebrians.github.io/Formix/',
             ctaLabel: 'Open Live Project'
@@ -57,9 +57,9 @@ window.PortfolioApp.ProjectsFilter = (function () {
             ],
             approach: 'Architected with semantic HTML, modular CSS, and Vanilla JavaScript focusing on typographic clarity, crisp spacing, and responsive card layouts that feel effortless on both mobile and desktop screens.',
             skills: [
-                { name: 'Web Development', icon: 'assets/images/skills/web-development.svg' },
+                { name: 'Web Development', icon: 'assets/images/skills/webdev.png' },
                 { name: 'JavaScript', icon: 'assets/images/skills/javascript.svg' },
-                { name: 'UI/UX Design', icon: 'assets/images/skills/ui-ux-design.svg' }
+                { name: 'UI/UX Design', icon: 'assets/images/skills/ux.png' }
             ],
             url: 'https://fiqrifebrians.github.io/Wisher/',
             ctaLabel: 'Open Live Project'
@@ -77,8 +77,8 @@ window.PortfolioApp.ProjectsFilter = (function () {
             approach: 'Engineered with Vanilla JavaScript and clean front-end state handling, prioritizing fast input feedback, readable typography, and a focused single-purpose UX.',
             skills: [
                 { name: 'JavaScript', icon: 'assets/images/skills/javascript.svg' },
-                { name: 'Web Development', icon: 'assets/images/skills/web-development.svg' },
-                { name: 'Applied AI', icon: 'assets/images/skills/applied-ai.svg' }
+                { name: 'Web Development', icon: 'assets/images/skills/webdev.png' },
+                { name: 'Applied AI', icon: 'assets/images/skills/appliedai.png' }
             ],
             url: 'https://fiqrifebrians.github.io/Nusa-Translate/',
             ctaLabel: 'Open Live Project'
@@ -95,9 +95,9 @@ window.PortfolioApp.ProjectsFilter = (function () {
             ],
             approach: 'Executed as an end-to-end visual identity exercise combining vector graphic design, regional cultural research, and cohesive layout presentation across all 10 national team concepts.',
             skills: [
-                { name: 'Graphic Design', icon: 'assets/images/skills/graphic-design.svg' },
-                { name: 'UI/UX Design', icon: 'assets/images/skills/ui-ux-design.svg' },
-                { name: 'Project Management', icon: 'assets/images/skills/project-management.svg' }
+                { name: 'Graphic Design', icon: 'assets/images/skills/graphicdesign.png' },
+                { name: 'UI/UX Design', icon: 'assets/images/skills/ux.png' },
+                { name: 'Project Management', icon: 'assets/images/skills/projectmanagement.png' }
             ],
             url: 'https://www.behance.net/gallery/159799401/2022-AFF-Championship-Concept-Kit',
             ctaLabel: 'View on Behance'
