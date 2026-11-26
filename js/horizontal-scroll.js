@@ -55,6 +55,10 @@ window.PortfolioApp.HorizontalScroll = (function () {
             const totalStr = String(panels.length).padStart(2, '0');
             counterEl.textContent = `${currentStr} / ${totalStr}`;
         }
+
+        if (window.PortfolioApp.Animations && typeof window.PortfolioApp.Animations.onPanelActivate === 'function') {
+            window.PortfolioApp.Animations.onPanelActivate(panels[currentIndex]);
+        }
     }
 
     function goToPanel(index) {

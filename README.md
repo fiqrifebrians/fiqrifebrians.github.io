@@ -1,27 +1,29 @@
 # fiqrifebrians.github.io
 
-Personal portfolio website for Muhammad Fiqri Febriansyah, designed with a Swiss Editorial White-Red aesthetic and horizontal-scrolling viewport architecture for GitHub Pages.
+Personal portfolio website for Muhammad Fiqri Febriansyah, designed with a Swiss Editorial White-Red aesthetic, horizontal-scrolling viewport architecture, and integrated GSAP + ScrollTrigger, Motion, and Lenis animations for GitHub Pages.
 
 ## Directory Structure
 
 ```text
 fiqrifebrians.github.io/
-├── index.html                  # Semantic HTML5 layout
+├── index.html                  # Semantic HTML5 layout with CDN & modular scripts
 ├── _config.yml                 # GitHub Pages configuration
 ├── README.md                   # Project documentation
 ├── assets/
 │   └── images/
-│       ├── skills/             # Local SVG skill icons (10 icons)
+│       ├── skills/             # Local skill & language icons (15 icons)
 │       └── ...                 # Profile, institution, project, and contact assets
 ├── css/
 │   ├── variables.css           # Swiss editorial tokens (Instrument Serif + Inter, White-Red)
 │   ├── base.css                # Reset and base typography
-│   ├── layout.css              # Horizontal 100vw/100vh viewport, floating navbar, grids
-│   ├── components.css          # Hero, About/Leeds Map, Timeline, Skill Grid, Projects, Modal
+│   ├── layout.css              # Horizontal 100vw/100dvh viewport, floating navbar, grids
+│   ├── components.css          # Hero, About/Leeds Map, Timeline, Skills, Projects, Modal, Motion wrappers
 │   └── responsive.css          # Laptop, tablet, and mobile responsive rules
 └── js/
-    ├── horizontal-scroll.js    # Wheel, keyboard, drag/swipe, arrow, and navbar navigation
+    ├── smooth-scroll.js        # Lenis smooth scrolling synchronized with GSAP ScrollTrigger
+    ├── motion-effects.js       # Motion hover, press, and modal micro-interactions
+    ├── animations.js           # GSAP + ScrollTrigger word-by-word headings & staggered entrances
+    ├── horizontal-scroll.js    # Wheel, keyboard, drag/swipe, arrow, navbar & mobile carousel isolation
     ├── projects-filter.js      # Category filters and enriched project detail modal
-    ├── animations.js           # Mobile navigation menu controller
     └── main.js                 # Application entry point
 ```

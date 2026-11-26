@@ -175,11 +175,22 @@ window.PortfolioApp.ProjectsFilter = (function () {
 
             modal.classList.add('is-open');
             modal.setAttribute('aria-hidden', 'false');
+
+            if (window.PortfolioApp.SmoothScroll) {
+                window.PortfolioApp.SmoothScroll.stop();
+            }
+            if (window.PortfolioApp.MotionEffects) {
+                window.PortfolioApp.MotionEffects.animateModalOpen(modal.querySelector('.modal-dialog'));
+            }
         }
 
         function closeModal() {
             modal.classList.remove('is-open');
             modal.setAttribute('aria-hidden', 'true');
+
+            if (window.PortfolioApp.SmoothScroll) {
+                window.PortfolioApp.SmoothScroll.start();
+            }
         }
 
         document.querySelectorAll('[data-project-key]').forEach((btn) => {
