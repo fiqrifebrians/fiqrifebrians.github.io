@@ -35,7 +35,7 @@ window.PortfolioApp.SmoothScroll = (function () {
                 lerp: 0.11,
                 prevent: (node) => {
                     // Never hijack scroll inside map iframe, mobile project slider, or open modal
-                    if (node.closest('.map-iframe')) return true;
+                    if (node.closest('.skyline-canvas-wrap')) return true;
                     if (node.closest('#projects .projects-grid') && window.innerWidth <= 960) return true;
                     if (node.closest('#projectModal')) return true;
                     return false;

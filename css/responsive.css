@@ -180,16 +180,54 @@
         font-size: 1.95rem;
     }
 
-    /* About & Map */
+    /* Mobile Header Prev/Next Controls */
+    .mobile-header-nav {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        flex-shrink: 0;
+    }
+
+    .mobile-nav-btn {
+        width: 34px;
+        height: 34px;
+        border-radius: var(--radius-sm);
+        background: #FFFFFF;
+        border: 1.5px solid var(--color-border-strong);
+        color: var(--color-text-primary);
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: var(--shadow-subtle);
+        transition: background-color var(--transition-fast), border-color var(--transition-fast), color var(--transition-fast), opacity var(--transition-fast);
+    }
+
+    .mobile-nav-btn:active:not(:disabled) {
+        background: var(--color-accent);
+        border-color: var(--color-accent);
+        color: var(--color-text-inverse);
+    }
+
+    .mobile-nav-btn:disabled {
+        opacity: 0.28;
+        cursor: not-allowed;
+    }
+
+    .contact-mobile-nav-wrap {
+        display: flex;
+        justify-content: flex-end;
+        margin-bottom: 10px;
+    }
+
+    /* About & 3D Skyline */
     .about-top-grid,
     .two-col-grid {
         grid-template-columns: 1fr;
         gap: 16px;
     }
 
-    .map-frame-wrap,
-    .map-iframe {
-        min-height: 190px;
+    .skyline-canvas-wrap {
+        min-height: 205px;
     }
 
     .focus-grid {

@@ -13,6 +13,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
+    <!-- MapLibre GL CSS for Real 3D Leeds Skyline -->
+    <link rel="stylesheet" href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css">
+
     <!-- Modular Stylesheets -->
     <link rel="stylesheet" href="css/variables.css">
     <link rel="stylesheet" href="css/base.css">
@@ -58,7 +61,7 @@
             <div class="panel-inner">
                 <div class="hero-grid">
                     <div class="hero-content">
-                        <div class="hero-eyebrow reveal-item">PORTFOLIO &mdash; 2026</div>
+                        <div class="hero-eyebrow reveal-item">PORTFOLIO 2027</div>
 
                         <h1 class="hero-title reveal-item">
                             Muhammad Fiqri <span class="text-accent">Febriansyah</span>
@@ -73,16 +76,13 @@
                         </p>
 
                         <div class="hero-actions reveal-item">
-                            <a href="#experience" class="btn btn-primary" data-panel="experience">
-                                Explore My Career
+                            <button type="button" class="btn btn-primary" data-nav="next">
+                                Start Exploring
                                 <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                                     <path d="M5 12h14"></path>
                                     <path d="m12 5 7 7-7 7"></path>
                                 </svg>
-                            </a>
-                            <a href="#projects" class="btn btn-outline" data-panel="projects">View Projects</a>
-                            <a href="#contact" class="btn btn-outline hero-btn-desktop-only" data-panel="contact">Contact Me</a>
-                            <a href="#about" class="btn btn-outline hero-btn-mobile-only" data-panel="about">About Me</a>
+                            </button>
                         </div>
 
                         <div class="hero-quick-links reveal-item">
@@ -113,9 +113,25 @@
         <section class="panel panel--tinted" id="about" aria-label="About">
             <div class="panel-inner">
                 <div class="section-head reveal-item">
-                    <div>
-                        <div class="section-eyebrow">Profile</div>
-                        <h2 class="section-title">About Me</h2>
+                    <div class="section-head-row">
+                        <div>
+                            <div class="section-eyebrow">Profile</div>
+                            <h2 class="section-title">About Me</h2>
+                        </div>
+                        <div class="mobile-header-nav" aria-label="Panel Navigation">
+                        <button type="button" class="mobile-nav-btn" data-nav="prev" aria-label="Previous Section">
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <path d="M19 12H5"></path>
+                                <path d="m12 19-7-7 7-7"></path>
+                            </svg>
+                        </button>
+                        <button type="button" class="mobile-nav-btn" data-nav="next" aria-label="Next Section">
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <path d="M5 12h14"></path>
+                                <path d="m12 5 7 7-7 7"></path>
+                            </svg>
+                        </button>
+                    </div>
                     </div>
                 </div>
 
@@ -142,23 +158,18 @@
                         </div>
                     </div>
 
-                    <!-- Interactive Map of Leeds, UK -->
-                    <div class="card map-card reveal-item">
-                        <div class="map-frame-wrap">
-                            <iframe
-                                class="map-iframe"
-                                title="Map of Leeds, West Yorkshire, UK"
-                                loading="lazy"
-                                referrerpolicy="no-referrer-when-downgrade"
-                                src="https://www.openstreetmap.org/export/embed.html?bbox=-1.5850%2C53.7820%2C-1.5130%2C53.8195&amp;layer=mapnik&amp;marker=53.8008%2C-1.5491">
-                            </iframe>
-                        </div>
-                        <div class="map-caption">
-                            <span class="map-caption-loc">
+                    <!-- Real 3D Leeds, UK Skyline (Rotation-Only Viewing Angle) -->
+                    <div class="card skyline-card reveal-item">
+                        <div class="skyline-canvas-wrap" id="leedsSkylineContainer" aria-label="Interactive 3D skyline of Leeds, UK"></div>
+                        <div class="skyline-caption">
+                            <span class="skyline-caption-loc">
                                 <span class="map-pin-dot"></span>
                                 Leeds, West Yorkshire, UK
                             </span>
-                            <span class="map-coords">53.8008&deg; N, 1.5491&deg; W</span>
+                            <span class="skyline-caption-right">
+                                <span class="skyline-hint">Drag to rotate</span>
+                                <a href="https://earth.google.com/web/search/Leeds,+UK" target="_blank" rel="noopener noreferrer" class="skyline-earth-link">Google Earth &#8599;</a>
+                            </span>
                         </div>
                     </div>
                 </div>
@@ -198,9 +209,25 @@
         <section class="panel" id="experience" aria-label="Career Journey and Education">
             <div class="panel-inner">
                 <div class="section-head reveal-item">
-                    <div>
-                        <div class="section-eyebrow">Background</div>
-                        <h2 class="section-title">Career &amp; Education</h2>
+                    <div class="section-head-row">
+                        <div>
+                            <div class="section-eyebrow">Background</div>
+                            <h2 class="section-title">Career &amp; Education</h2>
+                        </div>
+                        <div class="mobile-header-nav" aria-label="Panel Navigation">
+                        <button type="button" class="mobile-nav-btn" data-nav="prev" aria-label="Previous Section">
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <path d="M19 12H5"></path>
+                                <path d="m12 19-7-7 7-7"></path>
+                            </svg>
+                        </button>
+                        <button type="button" class="mobile-nav-btn" data-nav="next" aria-label="Next Section">
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <path d="M5 12h14"></path>
+                                <path d="m12 5 7 7-7 7"></path>
+                            </svg>
+                        </button>
+                    </div>
                     </div>
                 </div>
 
@@ -301,9 +328,25 @@
         <section class="panel panel--tinted" id="skills" aria-label="Skills and Languages">
             <div class="panel-inner">
                 <div class="section-head reveal-item">
-                    <div>
-                        <div class="section-eyebrow">Capabilities</div>
-                        <h2 class="section-title">Skills &amp; Languages</h2>
+                    <div class="section-head-row">
+                        <div>
+                            <div class="section-eyebrow">Capabilities</div>
+                            <h2 class="section-title">Skills &amp; Languages</h2>
+                        </div>
+                        <div class="mobile-header-nav" aria-label="Panel Navigation">
+                        <button type="button" class="mobile-nav-btn" data-nav="prev" aria-label="Previous Section">
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <path d="M19 12H5"></path>
+                                <path d="m12 19-7-7 7-7"></path>
+                            </svg>
+                        </button>
+                        <button type="button" class="mobile-nav-btn" data-nav="next" aria-label="Next Section">
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <path d="M5 12h14"></path>
+                                <path d="m12 5 7 7-7 7"></path>
+                            </svg>
+                        </button>
+                    </div>
                     </div>
                 </div>
 
@@ -410,9 +453,25 @@
         <section class="panel" id="projects" aria-label="My Projects">
             <div class="panel-inner">
                 <div class="section-head reveal-item">
-                    <div>
-                        <div class="section-eyebrow">Selected Work</div>
-                        <h2 class="section-title">Projects</h2>
+                    <div class="section-head-row">
+                        <div>
+                            <div class="section-eyebrow">Selected Work</div>
+                            <h2 class="section-title">Projects</h2>
+                        </div>
+                        <div class="mobile-header-nav" aria-label="Panel Navigation">
+                        <button type="button" class="mobile-nav-btn" data-nav="prev" aria-label="Previous Section">
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <path d="M19 12H5"></path>
+                                <path d="m12 19-7-7 7-7"></path>
+                            </svg>
+                        </button>
+                        <button type="button" class="mobile-nav-btn" data-nav="next" aria-label="Next Section">
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <path d="M5 12h14"></path>
+                                <path d="m12 5 7 7-7 7"></path>
+                            </svg>
+                        </button>
+                    </div>
                     </div>
 
                     <div class="project-filters" role="group" aria-label="Filter projects by category">
@@ -537,6 +596,22 @@
         <section class="panel panel--tinted" id="contact" aria-label="Contact">
             <div class="panel-inner">
                 <div class="contact-panel-box reveal-item">
+                    <div class="contact-mobile-nav-wrap">
+                        <div class="mobile-header-nav" aria-label="Panel Navigation">
+                        <button type="button" class="mobile-nav-btn" data-nav="prev" aria-label="Previous Section">
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <path d="M19 12H5"></path>
+                                <path d="m12 19-7-7 7-7"></path>
+                            </svg>
+                        </button>
+                        <button type="button" class="mobile-nav-btn" data-nav="next" aria-label="Next Section">
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <path d="M5 12h14"></path>
+                                <path d="m12 5 7 7-7 7"></path>
+                            </svg>
+                        </button>
+                    </div>
+                    </div>
                     <div class="section-eyebrow">Get In Touch</div>
                     <h2>Let's <span class="text-accent">Connect</span></h2>
                     <p>I am open to professional networking, tech innovations, and business opportunities.</p>
@@ -658,14 +733,16 @@
         </div>
     </div>
 
-    <!-- Motion & Smooth Scroll Libraries (GSAP + ScrollTrigger, Lenis, Motion) -->
+    <!-- Motion, Smooth Scroll & 3D Map Libraries (GSAP + ScrollTrigger, Lenis, Motion, MapLibre GL) -->
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/gsap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/ScrollTrigger.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.20/dist/lenis.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/motion@11.11.13/dist/motion.js"></script>
+    <script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
 
     <!-- Modular Scripts -->
     <script src="js/smooth-scroll.js"></script>
+    <script src="js/leeds-skyline.js"></script>
     <script src="js/motion-effects.js"></script>
     <script src="js/animations.js"></script>
     <script src="js/horizontal-scroll.js"></script>

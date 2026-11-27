@@ -83,7 +83,7 @@ window.PortfolioApp.HorizontalScroll = (function () {
         const modal = document.getElementById('projectModal');
         if (modal && modal.classList.contains('is-open')) return;
 
-        if (e.target.closest('.map-iframe')) return;
+        if (e.target.closest('.skyline-canvas-wrap')) return;
 
         // Keep main panel static when scrolling inside mobile projects horizontal track
         if (isMobileViewport() && e.target.closest('#projects .projects-grid')) {
@@ -137,36 +137,6 @@ window.PortfolioApp.HorizontalScroll = (function () {
         }
     }
 
-    function setupDragSwipe() {
-        let isDown = false;
-        let startX = 0;
-        let startScrollLeft = 0;
-
-        viewport.addEventListener('mousedown', (e) => {
-            if (e.target.closest('a, button, input, iframe, .modal-dialog')) return;
-            if (isMobileViewport() && e.target.closest('#projects .projects-grid')) return;
-            isDown = true;
-            startX = e.pageX;
-            startScrollLeft = viewport.scrollLeft;
-            viewport.classList.add('is-dragging');
-        });
-
-        window.addEventListener('mouseup', () => {
-            if (!isDown) return;
-            isDown = false;
-            viewport.classList.remove('is-dragging');
-            const nearest = Math.round(viewport.scrollLeft / getPanelWidth());
-            goToPanel(nearest);
-        });
-
-        viewport.addEventListener('mousemove', (e) => {
-            if (!isDown) return;
-            e.preventDefault();
-            const walk = (e.pageX - startX) * 1.25;
-            viewport.scrollLeft = startScrollLeft - walk;
-        });
-    }
-
     function setupMobileProjectsIsolation() {
         const projectsTrack = document.querySelector('#projects .projects-grid');
         if (!projectsTrack) return;
@@ -203,14 +173,20 @@ window.PortfolioApp.HorizontalScroll = (function () {
         panels = Array.from(viewport.querySelectorAll('.panel'));
         navLinks = Array.from(document.querySelectorAll('.nav-link[data-panel]'));
         dots = Array.from(document.querySelectorAll('.panel-dot[data-panel]'));
-        prevBtns = [
-            document.getElementById('prevPanelBtn'),
-            document.getElementById('mobilePrevBtn')
-        ].filter(Boolean);
-        nextBtns = [
-            document.getElementById('nextPanelBtn'),
-            document.getElementById('mobileNextBtn')
-        ].filter(Boolean);
+        prevBtns = Array.from(
+            new Set([
+                document.getElementById('prevPanelBtn'),
+                document.getElementById('mobilePrevBtn'),
+                ...document.querySelectorAll('[data-nav="prev"]')
+            ].filter(Boolean))
+        );
+        nextBtns = Array.from(
+            new Set([
+                document.getElementById('nextPanelBtn'),
+                document.getElementById('mobileNextBtn'),
+                ...document.querySelectorAll('[data-nav="next"]')
+            ].filter(Boolean))
+        );
         counterEl = document.getElementById('panelCounter');
 
         document.querySelectorAll('[data-panel]').forEach((trigger) => {
@@ -243,7 +219,6 @@ window.PortfolioApp.HorizontalScroll = (function () {
             });
         });
 
-        setupDragSwipe();
         setupMobileProjectsIsolation();
         setupScrollSync();
         updateActiveUI(0);

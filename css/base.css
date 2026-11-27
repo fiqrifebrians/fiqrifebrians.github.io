@@ -23,6 +23,8 @@ body {
     color: var(--color-text-secondary);
     line-height: 1.6;
     overflow: hidden;
+    user-select: text;
+    -webkit-user-select: text;
     height: 100vh;
     height: 100dvh;
     width: 100vw;

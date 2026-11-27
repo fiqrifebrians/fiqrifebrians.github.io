@@ -94,7 +94,7 @@ window.PortfolioApp.Animations = (function () {
         }
         if (id === 'about') {
             return Array.from(
-                panelEl.querySelectorAll('.section-eyebrow, .about-narrative-card, .map-card, .focus-card')
+                panelEl.querySelectorAll('.section-eyebrow, .about-narrative-card, .skyline-card, .focus-card')
             );
         }
         if (id === 'experience') {
@@ -133,6 +133,10 @@ window.PortfolioApp.Animations = (function () {
             defaults: { ease: 'power3.out' }
         });
 
+        const isShowcasePanel = ['experience', 'skills', 'projects'].includes(panelEl.id);
+        const itemDuration = isShowcasePanel ? 0.9 : 0.72;
+        const itemStagger = isShowcasePanel ? 0.095 : 0.075;
+
         if (words.length) {
             tl.fromTo(
                 words,
@@ -140,9 +144,9 @@ window.PortfolioApp.Animations = (function () {
                 {
                     yPercent: 0,
                     opacity: 1,
-                    duration: 0.62,
-                    stagger: 0.055,
-                    clearProps: 'transform,opacity'
+                    duration: 0.78,
+                    stagger: 0.07,
+                    clearProps: 'transform,opacity,willChange'
                 },
                 0
             );
@@ -155,20 +159,20 @@ window.PortfolioApp.Animations = (function () {
 
             tl.fromTo(
                 targets,
-                { y: 18, opacity: 0 },
+                { y: 24, opacity: 0 },
                 {
                     y: 0,
                     opacity: 1,
-                    duration: 0.52,
-                    stagger: 0.045,
-                    clearProps: 'transform,opacity',
+                    duration: itemDuration,
+                    stagger: itemStagger,
+                    clearProps: 'transform,opacity,willChange',
                     onComplete: () => {
                         targets.forEach((el) => {
                             delete el.dataset.entering;
                         });
                     }
                 },
-                words.length ? 0.12 : 0
+                words.length ? 0.18 : 0
             );
         }
     }

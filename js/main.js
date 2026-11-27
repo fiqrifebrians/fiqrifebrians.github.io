@@ -6,6 +6,9 @@ document.addEventListener('DOMContentLoaded', () => {
     if (window.PortfolioApp.SmoothScroll) {
         window.PortfolioApp.SmoothScroll.init();
     }
+    if (window.PortfolioApp.LeedsSkyline) {
+        window.PortfolioApp.LeedsSkyline.init();
+    }
     if (window.PortfolioApp.Animations) {
         window.PortfolioApp.Animations.init();
     }

@@ -164,6 +164,13 @@ window.PortfolioApp.MotionEffects = (function () {
             duration: 0.2
         });
 
+        bindHoverLift('.hero-photo-frame', {
+            y: -4,
+            scale: 1.02,
+            pressScale: 0.99,
+            duration: 0.28
+        });
+
         bindThumbHover();
     }
 

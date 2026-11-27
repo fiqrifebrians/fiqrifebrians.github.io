@@ -126,13 +126,6 @@
     display: none;
 }
 
-.horizontal-viewport.is-dragging {
-    scroll-snap-type: none;
-    scroll-behavior: auto;
-    cursor: grabbing;
-    user-select: none;
-}
-
 /* Full-Viewport Panel with Safe Internal Vertical Scroll */
 .panel {
     flex: 0 0 100vw;
@@ -164,6 +157,19 @@
 }
 
 /* Editorial Section Header */
+.section-head-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+    width: 100%;
+}
+
+.mobile-header-nav,
+.contact-mobile-nav-wrap {
+    display: none;
+}
+
 .section-head {
     display: flex;
     align-items: flex-end;
@@ -245,32 +251,35 @@
     gap: 14px;
 }
 
-/* Desktop Side Arrows */
+/* Desktop Side Arrows — High-Contrast, Compact & Clearly Visible */
 .viewport-arrow {
     position: fixed;
     top: 50%;
     transform: translateY(-50%);
-    width: 40px;
-    height: 40px;
+    width: 44px;
+    height: 44px;
     border-radius: var(--radius-md);
-    background: rgba(255, 255, 255, 0.96);
-    border: 1px solid var(--color-border);
+    background: #FFFFFF;
+    border: 1.5px solid var(--color-border-strong);
     color: var(--color-text-primary);
+    box-shadow: 0 6px 18px rgba(17, 24, 39, 0.1);
     display: flex;
     align-items: center;
     justify-content: center;
     z-index: var(--z-controls);
-    transition: background-color var(--transition-fast), border-color var(--transition-fast), color var(--transition-fast), opacity var(--transition-fast);
+    transition: background-color var(--transition-fast), border-color var(--transition-fast), color var(--transition-fast), box-shadow var(--transition-fast), opacity var(--transition-fast);
 }
 
 .viewport-arrow:hover:not(:disabled) {
     background: var(--color-accent);
     border-color: var(--color-accent);
     color: var(--color-text-inverse);
+    box-shadow: 0 10px 24px rgba(200, 16, 46, 0.24);
 }
 
 .viewport-arrow:disabled {
-    opacity: 0.25;
+    opacity: 0.28;
+    box-shadow: none;
     cursor: not-allowed;
 }
 
